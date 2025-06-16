@@ -1,0 +1,70 @@
+/* src/App.css */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; /* Pushes footer to the bottom */
+  padding: 20px 0;
+}
+
+.header {
+  background-color: var(--dark-background);
+  color: var(--white);
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo a {
+  color: var(--white);
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 25px;
+}
+
+.nav-links a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--secondary-color);
+}
+
+.footer {
+  background-color: var(--dark-background);
+  color: var(--white);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto; /* Pushes footer to the bottom */
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}

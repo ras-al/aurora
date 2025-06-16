@@ -1,0 +1,100 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@700&display=swap');
+
+:root {
+  --primary-color: #4A90E2; /* A nice blue for Aurora */
+  --secondary-color: #50E3C2; /* A contrasting color */
+  --text-color: #333;
+  --background-color: #f4f7f6;
+  --dark-background: #1a202c;
+  --white: #ffffff;
+  --light-gray: #e0e0e0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', sans-serif; /* For headings, gives a futuristic feel */
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Enhanced */
+}
+
+button:hover {
+  background-color: #3A7BCD;
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--light-gray);
+  border-radius: 5px;
+  box-sizing: border-box; /* Ensures padding doesn't increase total width */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+/* src/index.css (or App.css) */
+.page-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0; /* Start invisible */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Optional: slight slide up */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* src/index.css */
+body {
+  font-family: 'Poppins', sans-serif; /* Use your chosen font */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f8f9fa; /* Light background */
+  color: #333;
+}

@@ -1,0 +1,91 @@
+/* src/styles/FormPage.css */
+.form-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+}
+
+.form-page-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.form-card {
+  background-color: var(--white);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 600px; /* Wider for more form fields */
+  box-sizing: border-box;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.checkbox-group input {
+  width: auto;
+  margin-right: 10px;
+}
+
+.checkbox-group label {
+  margin-bottom: 0;
+}
+
+.registration-fee {
+  text-align: center;
+  margin: 30px 0;
+  padding: 15px;
+  background-color: var(--light-gray);
+  border-radius: 8px;
+}
+
+.registration-fee h3 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+}
+
+.payment-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  background-color: #ccc; /* Disabled color */
+  cursor: not-allowed;
+}
+
+.payment-button:hover {
+    background-color: #ccc; /* Keep same on hover when disabled */
+}
+
+.payment-button:not(:disabled) {
+    background-color: var(--secondary-color); /* Active color if enabled */
+    cursor: pointer;
+}
+.payment-button:not(:disabled):hover {
+    background-color: #43C6AC;
+}
+
+
+.note {
+  text-align: center;
+  margin-top: 20px;
+  color: #777;
+  font-size: 0.9rem;
+}

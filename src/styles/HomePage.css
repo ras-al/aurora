@@ -1,0 +1,289 @@
+/* src/styles/HomePage.css */
+
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/hero-background.jpg') no-repeat center center/cover;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* For animations */
+  overflow: hidden; /* Hide overflow from animations */
+}
+
+.hero-content {
+  z-index: 1; /* Ensure content is above any overlays */
+}
+
+.hero-content h1 {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  color: #fff;
+  opacity: 0; /* For animation */
+}
+
+.hero-content .subtitle {
+  font-size: 1.5em;
+  margin-bottom: 40px;
+  font-weight: 300;
+  opacity: 0; /* For animation */
+}
+
+.register-button {
+  display: inline-block;
+  background-color: #007bff; /* Primary blue */
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0; /* For animation */
+}
+
+.register-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Animations for hero section */
+.animate-hero-text {
+  opacity: 0;
+  animation: slideInText 1s ease-out forwards;
+}
+
+.animate-hero-text.delay-1 {
+  animation-delay: 0.5s; /* Delay for subtitle */
+}
+
+.animate-hero-button {
+  opacity: 0;
+  animation: fadeInButton 0.8s ease-out forwards;
+}
+
+.animate-hero-button.delay-2 {
+  animation-delay: 1s; /* Delay for button */
+}
+
+@keyframes slideInText {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInButton {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* General Page Content */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+section h2 {
+  font-size: 2.8em;
+  margin-bottom: 40px;
+  color: #333;
+  position: relative;
+  display: inline-block;
+}
+
+section h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: #007bff;
+  border-radius: 2px;
+}
+
+.about-aurora p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #555;
+}
+
+/* Event Categories & Cards */
+/* Event Categories & Cards */
+.event-category-section {
+  margin-bottom: 60px;
+}
+
+.event-category-section h3 {
+  font-size: 2.2em;
+  margin-bottom: 30px;
+  color: #007bff;
+  position: relative;
+  display: inline-block;
+}
+
+.event-category-section h3::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #007bff;
+  border-radius: 1.5px;
+}
+
+.event-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Slightly narrower min-width for more columns */
+  gap: 30px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.event-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  padding: 0; /* Remove padding here, it will be added to content inside */
+  text-align: left;
+  display: flex;
+  flex-direction: column; /* Stack image and content vertically */
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eee;
+  overflow: hidden; /* Crucial for rounded corners on image */
+}
+
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.event-card-image {
+  width: 100%;
+  height: 200px; /* Fixed height for consistency, makes it more "portrait" with variable width */
+  object-fit: cover; /* Cover the area, crop if necessary */
+  border-top-left-radius: 12px; /* Match card border radius */
+  border-top-right-radius: 12px; /* Match card border radius */
+  margin-bottom: 0; /* Remove margin, content-wrap will handle it */
+}
+
+.event-card-content { /* NEW: Wrapper for text content to give it padding */
+    padding: 15px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow content to take remaining space */
+}
+
+.event-card h4 {
+  font-size: 1.4em; /* Slightly smaller for portrait cards */
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.event-card p {
+  font-size: 0.95em; /* Slightly smaller font for description */
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 15px; /* Add more space before button */
+  flex-grow: 1; /* Allow description to take up available space */
+}
+
+.event-card .action-area { /* NEW: Flex container for buttons at the bottom */
+    display: flex;
+    justify-content: flex-end; /* Align button to the right */
+    padding-top: 10px;
+    border-top: 1px solid #eee; /* Separator for actions */
+    margin-top: auto; /* Push to the bottom */
+}
+
+.event-card button.register-event-button { /* Styling for the new button */
+  background-color: #28a744; /* Green */
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.event-card button.register-event-button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.event-card button.register-event-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5em;
+  }
+  .hero-content .subtitle {
+    font-size: 1.2em;
+  }
+  section h2 {
+    font-size: 2em;
+  }
+  .event-category-section h3 {
+    font-size: 1.8em;
+  }
+  .event-cards-grid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5em;
+  }
+  .hero-content .subtitle {
+    font-size: 1.2em;
+  }
+  section h2 {
+    font-size: 2em;
+  }
+  .event-category-section h3 {
+    font-size: 1.8em;
+  }
+  .event-cards-grid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+}
