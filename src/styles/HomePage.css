@@ -1,15 +1,37 @@
 /* src/styles/HomePage.css */
 
+/* General page container for fade-in effect if desired */
+.homepage {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Global smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Hero Section */
 .hero-section {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/hero-background.jpg') no-repeat center center/cover;
   color: white;
   text-align: center;
   padding: 80px 20px;
-  min-height: 400px;
+  min-height: 100vh; /* MAKE COVER PAGE FULL HEIGHT */
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative; /* For animations */
+  position: relative; /* For animations and scroll indicator */
   overflow: hidden; /* Hide overflow from animations */
 }
 
@@ -93,6 +115,39 @@
   }
 }
 
+/* Scroll Down Indicator */
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 30px; /* Position from the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1em;
+    animation: bounce 2s infinite; /* Simple bounce animation */
+    z-index: 2; /* Above background overlay */
+    cursor: pointer; /* Indicate it's clickable */
+    text-decoration: none; /* Remove underline for link */
+}
+
+.scroll-down-indicator i {
+    font-size: 2em; /* Size of arrow icon */
+    display: block;
+    margin-top: 5px;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-5px) translateX(-50%);
+  }
+}
+
+
 /* General Page Content */
 .container {
   max-width: 1200px;
@@ -100,10 +155,23 @@
   padding: 20px;
 }
 
-section {
-  padding: 60px 0;
+/* Common styling for all major content sections */
+.common-section {
+  padding: 80px 0; /* Ample vertical padding */
   text-align: center;
+  /* background-color will be set individually for variety */
+  border-bottom: 1px solid #eee; /* Subtle separator */
 }
+
+/* Override background for specific sections if needed */
+.about-aurora {
+  background-color: #f0f8ff; /* AliceBlue */
+}
+
+.events-section {
+  background-color: #e6f7ff; /* Lighter Blue */
+}
+
 
 section h2 {
   font-size: 2.8em;
@@ -134,7 +202,6 @@ section h2::after {
 }
 
 /* Event Categories & Cards */
-/* Event Categories & Cards */
 .event-category-section {
   margin-bottom: 60px;
 }
@@ -161,7 +228,7 @@ section h2::after {
 
 .event-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Slightly narrower min-width for more columns */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
   justify-content: center;
   align-items: stretch;
@@ -171,14 +238,14 @@ section h2::after {
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  padding: 0; /* Remove padding here, it will be added to content inside */
+  padding: 0;
   text-align: left;
   display: flex;
-  flex-direction: column; /* Stack image and content vertically */
+  flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #eee;
-  overflow: hidden; /* Crucial for rounded corners on image */
+  overflow: hidden;
 }
 
 .event-card:hover {
@@ -188,22 +255,23 @@ section h2::after {
 
 .event-card-image {
   width: 100%;
-  height: 200px; /* Fixed height for consistency, makes it more "portrait" with variable width */
-  object-fit: cover; /* Cover the area, crop if necessary */
-  border-top-left-radius: 12px; /* Match card border radius */
-  border-top-right-radius: 12px; /* Match card border radius */
-  margin-bottom: 0; /* Remove margin, content-wrap will handle it */
+  /* Remove or comment out 'height: 200px;' */
+  /* object-fit: cover; This will no longer be necessary for full image, but won't hurt */
+  object-fit: contain; /* or simply remove this line as well if you want natural behavior */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  margin-bottom: 0;
 }
 
-.event-card-content { /* NEW: Wrapper for text content to give it padding */
-    padding: 15px 20px 20px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Allow content to take remaining space */
+.event-card-content {
+  padding: 15px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .event-card h4 {
-  font-size: 1.4em; /* Slightly smaller for portrait cards */
+  font-size: 1.4em;
   color: #333;
   margin-top: 0;
   margin-bottom: 10px;
@@ -211,22 +279,22 @@ section h2::after {
 }
 
 .event-card p {
-  font-size: 0.95em; /* Slightly smaller font for description */
+  font-size: 0.95em;
   color: #666;
   line-height: 1.6;
-  margin-bottom: 15px; /* Add more space before button */
-  flex-grow: 1; /* Allow description to take up available space */
+  margin-bottom: 15px;
+  flex-grow: 1;
 }
 
-.event-card .action-area { /* NEW: Flex container for buttons at the bottom */
-    display: flex;
-    justify-content: flex-end; /* Align button to the right */
-    padding-top: 10px;
-    border-top: 1px solid #eee; /* Separator for actions */
-    margin-top: auto; /* Push to the bottom */
+.event-card .action-area {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px 20px;
+  border-top: 1px solid #eee;
+  margin-top: auto;
 }
 
-.event-card button.register-event-button { /* Styling for the new button */
+.event-card button.register-event-button {
   background-color: #28a744; /* Green */
   color: white;
   padding: 8px 15px;
@@ -238,7 +306,7 @@ section h2::after {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.event-card button.register-event-button:hover {
+.event-card button.register-event-button:hover:not(:disabled) {
   background-color: #218838;
   transform: translateY(-2px);
 }
@@ -249,41 +317,212 @@ section h2::after {
   transform: none;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2.5em;
-  }
-  .hero-content .subtitle {
-    font-size: 1.2em;
-  }
-  section h2 {
-    font-size: 2em;
-  }
-  .event-category-section h3 {
+/* Schedule Section Styling */
+.schedule-section {
+    background-color: #f0f0f0; /* Light gray */
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: left; /* Align text within schedule day cards */
+}
+
+.schedule-day {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+}
+
+.schedule-day h3 {
+    color: #007bff;
     font-size: 1.8em;
-  }
-  .event-cards-grid {
-    grid-template-columns: 1fr; /* Single column on small screens */
-  }
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.schedule-day ul {
+    list-style: none; /* Remove default list bullets */
+    padding: 0;
+}
+
+.schedule-day li {
+    margin-bottom: 12px;
+    font-size: 1.05em;
+    line-height: 1.5;
+    color: #333;
+}
+
+.schedule-day li strong {
+    color: #555;
+    display: block; /* Make time bold and on its own line */
+    margin-bottom: 5px;
+}
+
+.schedule-note {
+    margin-top: 40px;
+    font-style: italic;
+    color: #777;
+    font-size: 0.9em;
 }
 
 
+/* Accommodation Section Styling */
+.accommodation-section {
+    background-color: #f8fcfd; /* Very light blue */
+}
+
+.accommodation-details {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.accommodation-option {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    flex: 1; /* Allow items to grow/shrink */
+    min-width: 300px; /* Minimum width before wrapping */
+    max-width: 450px; /* Max width for larger screens */
+    text-align: left;
+    border: 1px solid #e0e0e0;
+}
+
+.accommodation-option h3 {
+    color: #007bff;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #cceeff;
+    padding-bottom: 10px;
+}
+
+.accommodation-option p {
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.accommodation-option a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.accommodation-option a:hover {
+    text-decoration: underline;
+}
+
+
+/* Contact Section (assuming it's a new section) */
+.contact-section {
+  background-color: #e0f2f7; /* Lighter Blue */
+  padding-bottom: 50px; /* Reduce padding if it's a footer-like section */
+}
+
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .hero-content h1 {
-    font-size: 2.5em;
+    font-size: 3em;
   }
   .hero-content .subtitle {
-    font-size: 1.2em;
+    font-size: 1.3em;
+  }
+  section h2 {
+    font-size: 2.5em;
+  }
+  .common-section {
+    padding: 60px 0;
+  }
+  .event-category-section h3 {
+      font-size: 2em;
+  }
+  /* Hide scroll indicator on smaller screens if it becomes intrusive */
+  .scroll-down-indicator {
+      display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2em;
+  }
+  .hero-content .subtitle {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+  }
+  .register-button {
+    padding: 12px 25px;
+    font-size: 1.1em;
   }
   section h2 {
     font-size: 2em;
+    margin-bottom: 25px;
+  }
+  .common-section {
+    padding: 40px 0;
   }
   .event-category-section h3 {
+    font-size: 1.6em;
+  }
+  .event-cards-grid, .schedule-grid, .accommodation-details {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .event-card, .schedule-day, .accommodation-option {
+    padding: 20px;
+    max-width: 100%; /* Ensure full width on mobile */
+  }
+
+  .schedule-day h3 {
+      font-size: 1.5em;
+  }
+  .accommodation-option h3 {
+      font-size: 1.4em;
+  }
+
+  .event-card .action-area {
+      padding: 10px 15px 15px; /* Slightly reduced padding on small screens */
+  }
+  .event-card button.register-event-button {
+      padding: 10px 12px;
+      font-size: 0.85em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
     font-size: 1.8em;
   }
-  .event-cards-grid {
-    grid-template-columns: 1fr; /* Single column on small screens */
+  .hero-content .subtitle {
+    font-size: 0.9em;
+  }
+  .register-button {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+  section h2 {
+    font-size: 1.6em;
+  }
+  .container {
+    padding: 0 15px; /* Smaller horizontal padding */
+  }
+  .event-category-section h3 {
+      font-size: 1.4em;
+  }
+  .event-card h4 {
+      font-size: 1.2em;
+  }
+  .event-card p {
+      font-size: 0.85em;
   }
 }

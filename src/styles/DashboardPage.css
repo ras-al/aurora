@@ -254,5 +254,73 @@ section h3 {
     margin: 0;
     text-align: center;
 }
+/* src/styles/UserDashboard.css */
 
-/* ... rest of the admin dashboard styles ... */
+/* Extend general dashboard styles from DashboardPage.css */
+/* For example, .user-dashboard-container, .form-card, .data-table, etc. */
+
+/* Specific styling for the user profile section */
+.user-info-section p {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: #444;
+    display: flex; /* Use flexbox for alignment */
+    align-items: baseline; /* Align text baselines */
+    gap: 10px; /* Space between label and value */
+}
+
+.user-info-section p strong {
+    color: #222;
+    margin-right: 5px;
+}
+
+/* Styles for Registered Events Section */
+.registered-events-section h3 {
+    /* Inherit or override from admin dashboard h3 if needed */
+}
+
+/* Cancel Registration Button */
+.cancel-participation-button {
+    background-color: #ff8c00; /* Orange color for cancellation */
+    color: white;
+    /* Reuse small-button styles if defined in general dashboard.css */
+}
+
+.cancel-participation-button:hover {
+    background-color: #cc7000;
+}
+
+/* Visual feedback for admin-canceled events in user dashboard */
+.info-message {
+    font-style: italic;
+    color: #555;
+    font-size: 0.9em;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.small-info {
+    font-size: 0.8em; /* Smaller for use in table cells */
+}
+
+/* If you're using .canceled-event-row and .strikethrough-text from AdminDashboard.css,
+   ensure they are either imported or redefined here, or included in a common CSS file like App.css. */
+.canceled-event-row {
+    background-color: #ffe0e6;
+    opacity: 0.8;
+}
+
+.strikethrough-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Responsive adjustments specific to User Dashboard if needed */
+@media (max-width: 768px) {
+    /* Adjustments for smaller screens */
+    .user-info-section p {
+        font-size: 1em;
+    }
+}

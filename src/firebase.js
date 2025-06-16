@@ -1,23 +1,30 @@
 // src/firebase.js
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from 'firebase/auth';
 import {
   getFirestore,
   collection,
-  addDoc,
-  getDocs,
   doc,
   getDoc,
-  query,
-  where,
+  setDoc,
   updateDoc,
   deleteDoc,
-  setDoc,
-  arrayUnion, // <--- Import arrayUnion here
-  arrayRemove // <--- Also good to have for later if you need to remove
-} from 'firebase/firestore';
+  arrayUnion,
+  arrayRemove,
+  query,
+  where,
+  getDocs,           // Ensure getDocs is imported from firestore
+  addDoc,            // Ensure addDoc is imported from firestore
+  serverTimestamp    // Ensure serverTimestamp is imported from firestore
+} from 'firebase/firestore'; // Make sure all Firestore functions come from 'firebase/firestore'
 
-// **IMPORTANT: Replace with your actual Firebase config**
+// Your Firebase configuration (REPLACE WITH YOUR ACTUAL CONFIG)
 const firebaseConfig = {
   apiKey: "AIzaSyA_ltOHuACtL_uAkfAuzPOnEdbfC1QSabw",
   authDomain: "aurora-f8685.firebaseapp.com",
@@ -28,31 +35,34 @@ const firebaseConfig = {
   measurementId: "G-TY8F5T22MS"
 };
 
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// Export all the Firebase services and functions you intend to use in other files.
+// This is how they become available for import from '../firebase'.
 export {
-  app,
   auth,
   db,
-  // Firebase Auth functions
+  // Auth Functions
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  // Firebase Firestore functions
+  // Firestore Functions
   collection,
-  addDoc,
-  getDocs,
   doc,
   getDoc,
-  query,
-  where,
+  setDoc,
   updateDoc,
   deleteDoc,
-  setDoc,
-  arrayUnion, // <--- Export arrayUnion
-  arrayRemove // <--- Export arrayRemove
+  arrayUnion,
+  arrayRemove,
+  query,
+  where,
+  getDocs,           // Export getDocs
+  addDoc,            // Export addDoc
+  serverTimestamp    // Export serverTimestamp
 };

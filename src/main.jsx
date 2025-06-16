@@ -1,17 +1,14 @@
 // src/main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
+import { BrowserRouter } from 'react-router-dom'; // Only one BrowserRouter here
 import App from './App.jsx';
-import './index.css';
-import { AuthProvider } from './contexts/AuthContext';
+import './index.css'; // Your global styles
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router> {/* BrowserRouter must wrap anything that uses React Router hooks/components */}
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </Router>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
 );

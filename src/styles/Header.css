@@ -1,0 +1,145 @@
+/* src/styles/Header.css */
+
+.main-header {
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    position: sticky; /* Makes header stick to the top */
+    top: 0;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Horizontal padding for content */
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #007bff; /* Primary blue for logo */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #0056b3;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Horizontal navigation */
+    gap: 25px; /* Space between links */
+}
+
+.main-nav li a,
+.main-nav li button { /* Style for both links and buttons in nav */
+    color: #333; /* Dark text for links */
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 8px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    background: none; /* Remove button default background */
+    border: none;
+    cursor: pointer;
+    white-space: nowrap; /* Prevent links from wrapping */
+}
+
+.main-nav li a:hover,
+.main-nav li button:hover {
+    color: #007bff; /* Primary blue on hover */
+    border-bottom: 2px solid #007bff;
+}
+
+.main-nav li a.active { /* Style for active link (NavLink) */
+    color: #007bff;
+    font-weight: 600;
+    border-bottom: 2px solid #007bff;
+}
+
+.header-logout-button {
+    background-color: #dc3545; /* Red for logout */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.95em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.header-logout-button:hover {
+    background-color: #c82333;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .main-nav {
+        position: absolute;
+        top: 100%; /* Position below header */
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 0;
+        border-top: 1px solid #eee;
+        z-index: 999;
+    }
+
+    .main-nav.open {
+        display: flex; /* Show when open */
+    }
+
+    .main-nav ul {
+        flex-direction: column; /* Stack links vertically */
+        gap: 10px;
+    }
+
+    .main-nav li {
+        width: 100%;
+    }
+
+    .main-nav li a,
+    .main-nav li button {
+        padding: 12px 0;
+        display: block; /* Make links full width */
+    }
+
+    .menu-toggle {
+        display: flex; /* Show burger icon on mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+    }
+    .logo {
+        font-size: 1.5em;
+    }
+}

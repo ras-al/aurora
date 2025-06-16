@@ -1,6 +1,6 @@
 // src/contexts/AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Make sure useNavigate is imported if used here
+import { useNavigate } from 'react-router-dom'; // This will now be in context
 
 import {
   auth,
@@ -9,11 +9,13 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  doc, // <--- Ensure doc is imported
+  doc,
   getDoc,
   setDoc,
-  updateDoc // <--- NEW: Import updateDoc here
-} from '../firebase'; // Import Firebase functions and db instance
+  updateDoc,
+  arrayUnion,
+  arrayRemove // Make sure this is imported if you use it
+} from '../firebase'; // Import Firebase services and functions from your configured firebase.js
 
 const AuthContext = createContext();
 
@@ -26,7 +28,7 @@ export function AuthProvider({ children }) {
   const [userProfile, setUserProfile] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // Initialize useNavigate here
+  const navigate = useNavigate(); // This line now works because AuthProvider is inside BrowserRouter
 
   // Function to register a user
   const register = async (email, password, userData) => {
@@ -42,35 +44,41 @@ export function AuthProvider({ children }) {
         isIEEE: userData.isIEEE || false,
         memberId: userData.memberId || '',
         createdAt: new Date(),
-        role: 'user', // Default role for new users
-        registeredEvents: [] // Initialize empty array for registered events
-      });
-      setCurrentUser(user);
-      setUserProfile({
-        email: user.email,
-        name: userData.name || '',
-        phone: userData.phone || '',
-        college: userData.college || '',
-        isIEEE: userData.isIEEE || false,
-        memberId: userData.memberId || '',
-        role: 'user',
+        role: 'user', // Default role for new users is 'user'
         registeredEvents: []
       });
+      // setCurrentUser and setUserProfile will be handled by the onAuthStateChanged listener
+      // Redirection for new users to dashboard is also handled by onAuthStateChanged listener
       return true;
     } catch (error) {
       console.error("Error registering user:", error.message);
-      throw error;
+      let errorMessage = 'Failed to register. Please try again.';
+      if (error.code === 'auth/email-already-in-use') {
+        errorMessage = 'This email is already registered. Try logging in.';
+      }
+      throw new Error(errorMessage);
     }
   };
 
-  // Function to login a user
+  // MODIFIED: Consolidated login function for both users and admins
   const login = async (email, password) => {
     try {
+      // Authenticate with Firebase Auth
       await signInWithEmailAndPassword(auth, email, password);
-      return true;
+      // The onAuthStateChanged listener (in the useEffect below) will now:
+      // 1. Fetch the user's profile from Firestore
+      // 2. Determine their 'isAdmin' status based on their Firestore 'role'
+      // 3. Handle redirection to the appropriate dashboard ('/dashboard' or '/admin-dashboard')
+      return true; // Indicate successful authentication, further logic handled by useEffect
     } catch (error) {
       console.error("Error logging in:", error.message);
-      throw error;
+      let errorMessage = 'Login failed. Please try again.';
+      if (error.code === 'auth/invalid-email' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+        errorMessage = 'Incorrect email or password.';
+      } else if (error.code === 'auth/too-many-requests') {
+          errorMessage = 'Too many failed login attempts. Please try again later.';
+      }
+      throw new Error(errorMessage); // Throw a user-friendly error message
     }
   };
 
@@ -78,6 +86,7 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     try {
       await signOut(auth);
+      // Reset all user-related states
       setCurrentUser(null);
       setUserProfile(null);
       setIsAdmin(false);
@@ -89,38 +98,12 @@ export function AuthProvider({ children }) {
     }
   };
 
-  // Function to handle admin login specifically
-  const adminLogin = async (email, password) => {
-    try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-
-        const userDocRef = doc(db, 'users', user.uid);
-        const docSnap = await getDoc(userDocRef);
-
-        if (docSnap.exists() && docSnap.data().role === 'admin') {
-            setCurrentUser(user);
-            setUserProfile(docSnap.data());
-            setIsAdmin(true);
-            return true;
-        } else {
-            // If not admin, sign out immediately to prevent unauthorized access
-            await signOut(auth);
-            throw new Error('Unauthorized access. Not an admin user.');
-        }
-    } catch (error) {
-        console.error("Error during admin login:", error.message);
-        throw error;
-    }
-  };
-
   // Function to update user profile in Firestore
-  // This is the function called when registering for individual events
   const updateUserProfile = async (uid, dataToUpdate) => {
     try {
       const userDocRef = doc(db, 'users', uid);
-      await updateDoc(userDocRef, dataToUpdate); // <--- updateDoc is now defined
-      // After successful update, re-fetch or update local userProfile state
+      await updateDoc(userDocRef, dataToUpdate);
+      // After successful update, re-fetch or update local userProfile state to ensure UI reflects changes
       const updatedDocSnap = await getDoc(userDocRef);
       if (updatedDocSnap.exists()) {
         setUserProfile(updatedDocSnap.data());
@@ -135,45 +118,64 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setCurrentUser(user);
       if (user) {
-        // Fetch user profile from Firestore
         const userDocRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(userDocRef);
+
         if (docSnap.exists()) {
-          setUserProfile(docSnap.data());
-          setIsAdmin(docSnap.data().role === 'admin');
+          const profileData = docSnap.data();
+          setCurrentUser(user);
+          setUserProfile(profileData);
+          setIsAdmin(profileData.role === 'admin');
+
+          const currentPath = window.location.pathname;
+          // Only navigate if not already on the correct dashboard or coming from login/signup
+          if (profileData.role === 'admin' && currentPath !== '/admin-dashboard') {
+            navigate('/admin-dashboard');
+          } else if (profileData.role === 'user' && currentPath !== '/dashboard' && currentPath !== '/login' && currentPath !== '/signup') {
+            navigate('/dashboard');
+          }
         } else {
-          // If user exists in Auth but not Firestore (e.g., deleted manually),
-          // ensure userProfile and isAdmin are reset
+          // User authenticated but no profile: create one or log out
+          setCurrentUser(user);
           setUserProfile(null);
           setIsAdmin(false);
           console.warn("User profile not found for UID:", user.uid);
+          // Forcing logout or redirection to a profile creation page is advisable
+          await signOut(auth); // Log them out if no profile
+          navigate('/login');
         }
       } else {
+        // User is logged out
+        setCurrentUser(null);
         setUserProfile(null);
         setIsAdmin(false);
+        // Redirect to login if on a protected route while logged out
+        if (['/dashboard', '/admin-dashboard', '/register-aurora'].includes(window.location.pathname)) {
+            navigate('/login');
+        }
       }
       setLoading(false);
     });
 
-    return unsubscribe; // Cleanup subscription on unmount
-  }, []);
+    return unsubscribe;
+  }, [navigate]);
 
   const value = {
     currentUser,
     userProfile,
     isAdmin,
+    loading,
     register,
-    login,
+    login, // This is the single login function
     logout,
-    adminLogin,
-    updateUserProfile // Provide updateUserProfile in the context
+    updateUserProfile
+    // adminLogin is no longer exposed from here
   };
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 }

@@ -1,0 +1,220 @@
+/* src/styles/UserDashboard.css */
+
+/* ... (previous CSS rules) ... */
+
+/* Aurora Ticket Section Styling */
+.aurora-ticket-section {
+    margin-bottom: 40px;
+    text-align: center; /* Center the ticket card */
+}
+
+.aurora-ticket-section h3 {
+    margin-bottom: 25px;
+    font-size: 2em;
+    color: #007bff;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+
+.ticket-card {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Gradient blue */
+    color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-width: 500px; /* Limit ticket width */
+    margin: 0 auto; /* Center the ticket card itself */
+    position: relative;
+    overflow: hidden; /* For pseudo-elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Pseudo-elements for ticket perforation effect */
+.ticket-card::before,
+.ticket-card::after {
+    content: '';
+    position: absolute;
+    width: 20px; /* Size of the half-circle */
+    height: 20px;
+    background-color: #f9f9f9; /* Background color of the dashboard container */
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1; /* Ensure it's above the ticket card */
+}
+
+.ticket-card::before {
+    left: -10px; /* Half outside to create the cut effect */
+}
+
+.ticket-card::after {
+    right: -10px; /* Half outside to create the cut effect */
+}
+
+
+.ticket-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.5); /* Dashed line for separation */
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.ticket-event-name {
+    font-size: 2.5em;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.ticket-type {
+    font-size: 1.1em;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+}
+
+.ticket-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    text-align: left;
+}
+
+.ticket-info p {
+    margin: 5px 0;
+    font-size: 1.1em;
+    line-height: 1.4;
+}
+
+.ticket-info p strong {
+    color: #cceeff; /* Lighter blue for labels */
+    min-width: 90px; /* Align labels */
+    display: inline-block;
+}
+
+.ticket-id {
+    text-align: center;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.ticket-id span {
+    font-size: 1.2em;
+    font-weight: 500;
+    display: block; /* Make "Ticket ID" and its value stack */
+}
+
+.ticket-id-value {
+    font-family: 'Consolas', 'Courier New', monospace; /* Monospaced font for ID */
+    font-size: 1.8em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    color: #ffd700; /* Gold color for the ID */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.ticket-footer {
+    width: 100%;
+    border-top: 1px dashed rgba(255, 255, 255, 0.5);
+    padding-top: 15px;
+    margin-top: 20px;
+    font-size: 0.95em;
+    text-align: center;
+}
+
+.ticket-footer p {
+    margin: 5px 0;
+}
+
+.ticket-date {
+    font-style: italic;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.ticket-barcode {
+    width: 80%;
+    height: 80px;
+    background-color: white;
+    margin-top: 25px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.5em;
+    border: 2px dashed #ccc;
+    position: relative;
+}
+
+.ticket-barcode::before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(90deg, #333, #333 2px, transparent 2px, transparent 4px);
+    opacity: 0.1; /* Light barcode pattern */
+}
+
+.ticket-barcode .barcode-placeholder {
+    z-index: 2; /* Bring text above the pseudo-barcode lines */
+    background-color: white; /* Ensure text background is clear */
+    padding: 0 10px;
+}
+
+.ticket-disclaimer {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+    .ticket-card {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .ticket-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .ticket-event-name {
+        font-size: 2em;
+        margin-bottom: 5px;
+    }
+
+    .ticket-type {
+        font-size: 1em;
+    }
+
+    .ticket-info p {
+        font-size: 1em;
+    }
+
+    .ticket-id-value {
+        font-size: 1.5em;
+    }
+
+    .ticket-barcode {
+        height: 60px;
+    }
+}
