@@ -121,32 +121,34 @@ export function AuthProvider({ children }) {
 
           const currentPath = window.location.pathname;
 
-          // Define paths that are ONLY for authentication (login/signup)
           const authOnlyPaths = ['/login', '/signup'];
-          // Define paths that are "protected" (require login)
-          const protectedUserPaths = ['/dashboard', '/register-aurora']; // Add other user-specific protected paths
-          const protectedAdminPaths = ['/admin-dashboard']; // Add other admin-specific protected paths
+          // MODIFIED: /register-aurora is no longer a 'protectedUserPath' here
+          // as it's the target for logged-in but not Aurora-registered users.
+          const protectedUserPaths = ['/dashboard']; 
+          const protectedAdminPaths = ['/admin-dashboard'];
 
           if (profileData.role === 'admin') {
-            // ADMIN REDIRECTION LOGIC
-            // If admin is on an auth-only page or not on their admin dashboard, redirect to admin dashboard.
             if (authOnlyPaths.includes(currentPath) || !protectedAdminPaths.includes(currentPath)) {
               navigate('/admin-dashboard');
             }
           } else { // Regular user
-            // REGULAR USER REDIRECTION LOGIC
-            // If user is on an auth-only page, redirect to dashboard.
             if (authOnlyPaths.includes(currentPath)) {
               navigate('/dashboard');
             }
-            // If user is on a protected user path but not /dashboard, make sure they go to /dashboard
-            // (This handles cases where they might go to /register-aurora while logged in,
-            // but we want to ensure they land on the dashboard if that's the primary authenticated view)
-            else if (protectedUserPaths.includes(currentPath) && currentPath !== '/dashboard') {
-                navigate('/dashboard');
-            }
-            // IMPORTANT: No 'else' or 'else if' here to redirect to dashboard for public paths.
-            // This allows users to browse /, /events, etc., while logged in.
+            // MODIFIED: This specific redirection logic for other protectedUserPaths is removed
+            // because /register-aurora is now the intended destination for non-Aurora registered users.
+            // If you have other paths like /settings that ONLY logged-in users should access
+            // and should redirect to dashboard if visited, you'd need a more nuanced check.
+            // For now, only /dashboard implies a direct navigation if on an auth page.
+            
+            // If the user is logged in and tries to go to a path that's meant for authenticated users
+            // but isn't the dashboard or register-aurora, you might want to redirect.
+            // Example if you had other 'protectedUserPaths' besides '/dashboard':
+            // if (protectedUserPaths.includes(currentPath) && currentPath !== '/dashboard' && currentPath !== '/register-aurora') {
+            //   navigate('/dashboard');
+            // }
+            // For now, let's keep it simple: if they are on an auth page, go to dashboard.
+            // All other non-auth pages (like /, /events, /register-aurora) are fine.
           }
 
         } else {
@@ -165,7 +167,8 @@ export function AuthProvider({ children }) {
         setIsAdmin(false);
 
         // Define all paths that require ANY login (user or admin)
-        const allProtectedPaths = ['/dashboard', '/admin-dashboard', '/register-aurora']; // Add all other protected paths
+        // /register-aurora still requires being logged in to access it.
+        const allProtectedPaths = ['/dashboard', '/admin-dashboard', '/register-aurora'];
         if (allProtectedPaths.includes(window.location.pathname)) {
             navigate('/login'); // Redirect to login if on any protected route while logged out
         }
