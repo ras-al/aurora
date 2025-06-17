@@ -1,6 +1,6 @@
 // src/contexts/AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // This will now be in context
+import { useNavigate } from 'react-router-dom';
 
 import {
   auth,
@@ -14,8 +14,8 @@ import {
   setDoc,
   updateDoc,
   arrayUnion,
-  arrayRemove // Make sure this is imported if you use it
-} from '../firebase'; // Import Firebase services and functions from your configured firebase.js
+  arrayRemove
+} from '../firebase';
 
 const AuthContext = createContext();
 
@@ -28,7 +28,7 @@ export function AuthProvider({ children }) {
   const [userProfile, setUserProfile] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // This line now works because AuthProvider is inside BrowserRouter
+  const navigate = useNavigate();
 
   // Function to register a user
   const register = async (email, password, userData) => {
@@ -47,8 +47,6 @@ export function AuthProvider({ children }) {
         role: 'user', // Default role for new users is 'user'
         registeredEvents: []
       });
-      // setCurrentUser and setUserProfile will be handled by the onAuthStateChanged listener
-      // Redirection for new users to dashboard is also handled by onAuthStateChanged listener
       return true;
     } catch (error) {
       console.error("Error registering user:", error.message);
@@ -60,25 +58,20 @@ export function AuthProvider({ children }) {
     }
   };
 
-  // MODIFIED: Consolidated login function for both users and admins
+  // Consolidated login function for both users and admins
   const login = async (email, password) => {
     try {
-      // Authenticate with Firebase Auth
       await signInWithEmailAndPassword(auth, email, password);
-      // The onAuthStateChanged listener (in the useEffect below) will now:
-      // 1. Fetch the user's profile from Firestore
-      // 2. Determine their 'isAdmin' status based on their Firestore 'role'
-      // 3. Handle redirection to the appropriate dashboard ('/dashboard' or '/admin-dashboard')
-      return true; // Indicate successful authentication, further logic handled by useEffect
+      return true;
     } catch (error) {
       console.error("Error logging in:", error.message);
       let errorMessage = 'Login failed. Please try again.';
       if (error.code === 'auth/invalid-email' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
         errorMessage = 'Incorrect email or password.';
       } else if (error.code === 'auth/too-many-requests') {
-          errorMessage = 'Too many failed login attempts. Please try again later.';
+        errorMessage = 'Too many failed login attempts. Please try again later.';
       }
-      throw new Error(errorMessage); // Throw a user-friendly error message
+      throw new Error(errorMessage);
     }
   };
 
@@ -86,7 +79,6 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     try {
       await signOut(auth);
-      // Reset all user-related states
       setCurrentUser(null);
       setUserProfile(null);
       setIsAdmin(false);
@@ -103,7 +95,6 @@ export function AuthProvider({ children }) {
     try {
       const userDocRef = doc(db, 'users', uid);
       await updateDoc(userDocRef, dataToUpdate);
-      // After successful update, re-fetch or update local userProfile state to ensure UI reflects changes
       const updatedDocSnap = await getDoc(userDocRef);
       if (updatedDocSnap.exists()) {
         setUserProfile(updatedDocSnap.data());
@@ -129,30 +120,54 @@ export function AuthProvider({ children }) {
           setIsAdmin(profileData.role === 'admin');
 
           const currentPath = window.location.pathname;
-          // Only navigate if not already on the correct dashboard or coming from login/signup
-          if (profileData.role === 'admin' && currentPath !== '/admin-dashboard') {
-            navigate('/admin-dashboard');
-          } else if (profileData.role === 'user' && currentPath !== '/dashboard' && currentPath !== '/login' && currentPath !== '/signup') {
-            navigate('/dashboard');
+
+          // Define paths that are ONLY for authentication (login/signup)
+          const authOnlyPaths = ['/login', '/signup'];
+          // Define paths that are "protected" (require login)
+          const protectedUserPaths = ['/dashboard', '/register-aurora']; // Add other user-specific protected paths
+          const protectedAdminPaths = ['/admin-dashboard']; // Add other admin-specific protected paths
+
+          if (profileData.role === 'admin') {
+            // ADMIN REDIRECTION LOGIC
+            // If admin is on an auth-only page or not on their admin dashboard, redirect to admin dashboard.
+            if (authOnlyPaths.includes(currentPath) || !protectedAdminPaths.includes(currentPath)) {
+              navigate('/admin-dashboard');
+            }
+          } else { // Regular user
+            // REGULAR USER REDIRECTION LOGIC
+            // If user is on an auth-only page, redirect to dashboard.
+            if (authOnlyPaths.includes(currentPath)) {
+              navigate('/dashboard');
+            }
+            // If user is on a protected user path but not /dashboard, make sure they go to /dashboard
+            // (This handles cases where they might go to /register-aurora while logged in,
+            // but we want to ensure they land on the dashboard if that's the primary authenticated view)
+            else if (protectedUserPaths.includes(currentPath) && currentPath !== '/dashboard') {
+                navigate('/dashboard');
+            }
+            // IMPORTANT: No 'else' or 'else if' here to redirect to dashboard for public paths.
+            // This allows users to browse /, /events, etc., while logged in.
           }
+
         } else {
-          // User authenticated but no profile: create one or log out
+          // User authenticated but no profile: this is an edge case, log them out.
           setCurrentUser(user);
           setUserProfile(null);
           setIsAdmin(false);
           console.warn("User profile not found for UID:", user.uid);
-          // Forcing logout or redirection to a profile creation page is advisable
-          await signOut(auth); // Log them out if no profile
-          navigate('/login');
+          await signOut(auth);
+          navigate('/login'); // Redirect to login
         }
       } else {
         // User is logged out
         setCurrentUser(null);
         setUserProfile(null);
         setIsAdmin(false);
-        // Redirect to login if on a protected route while logged out
-        if (['/dashboard', '/admin-dashboard', '/register-aurora'].includes(window.location.pathname)) {
-            navigate('/login');
+
+        // Define all paths that require ANY login (user or admin)
+        const allProtectedPaths = ['/dashboard', '/admin-dashboard', '/register-aurora']; // Add all other protected paths
+        if (allProtectedPaths.includes(window.location.pathname)) {
+            navigate('/login'); // Redirect to login if on any protected route while logged out
         }
       }
       setLoading(false);
@@ -167,10 +182,9 @@ export function AuthProvider({ children }) {
     isAdmin,
     loading,
     register,
-    login, // This is the single login function
+    login,
     logout,
     updateUserProfile
-    // adminLogin is no longer exposed from here
   };
 
   return (
