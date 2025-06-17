@@ -246,7 +246,7 @@ function UserDashboardPage() {
             </table>
           </div>
         ) : (
-          <p>You have not registered for any events yet. Explore our <a href="/events">events page</a>!</p>
+          <p>You have not registered for any events yet. Explore our <a href="/#events">events page</a>!</p>
         )}
       </section>
 
