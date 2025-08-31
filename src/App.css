@@ -1,6 +1,6 @@
 /* src/App.css */
 body {
-  background-image: url('./space-hero.png'); /* Placeholder for a dark space pattern */
+  background-image: url('/space-hero.png');
   background-size: cover;
   background-attachment: fixed;
 }
