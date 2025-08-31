@@ -25,7 +25,6 @@ html { scroll-behavior: smooth; }
 
 /* Hero Section */
 .hero-section {
-  /* FIX: corrected image name from sapce-hero.png -> space-hero.png */
   background: linear-gradient(rgba(15, 17, 26, 0.5), rgba(15, 17, 26, 0.5)) no-repeat center center/cover;
   color: white;
   text-align: center;

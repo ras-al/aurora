@@ -21,11 +21,11 @@
   border-radius: 10px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.5);
   width: 100%;
-  max-width: 450px;
+  max-width: 450px; /* This limits the form's maximum width */
   box-sizing: border-box;
   border: 1px solid var(--border-color);
-  margin: 0 auto; /* Changed to rely on parent for centering */
-  text-align: left; /* Align form content to the left */
+  /* margin: 0 auto; - Can be removed if parent is centering, but harmless */
+  text-align: left;
 }
 
 .form-group {
