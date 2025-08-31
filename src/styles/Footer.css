@@ -1,0 +1,22 @@
+.footer {
+  background: #111; /* adjust as needed */
+  color: #eee;
+  padding: 20px 10px;
+  position: relative;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;   /* centers text horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* centers items vertically in flex */
+  gap: 6px;
+}
+
+.footer p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+}

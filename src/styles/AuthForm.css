@@ -1,0 +1,107 @@
+/* src/styles/AuthForm.css */
+.auth-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers horizontally */
+  min-height: 100vh;
+  padding: 20px;
+  width: 100%;
+}
+
+.auth-form-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+  text-shadow: var(--accent-glow);
+}
+
+.auth-form {
+  background-color: var(--card-background);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  width: 100%;
+  max-width: 450px;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  margin: 0 auto; /* Changed to rely on parent for centering */
+  text-align: left; /* Align form content to the left */
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left; /* Align form groups to the left */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+  width: calc(100% - 22px);
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1em;
+  box-sizing: border-box;
+  background-color: #2D3748;
+  color: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+  background-color: var(--secondary-color);
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #9CA3AF;
+}
+
+.form-footer a {
+  font-weight: 600;
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.form-footer a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* Added styles for error messages */
+.form-error {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Focus states for inputs */
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}

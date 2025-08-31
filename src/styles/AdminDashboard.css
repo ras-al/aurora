@@ -1,0 +1,395 @@
+/* src/styles/AdminDashboard.css */
+
+/* General Layout for Admin Dashboard */
+.admin-dashboard-container {
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: var(--background-color);
+    border-radius: 0; /* No rounding for a full-screen feel */
+    box-shadow: none; /* No shadow for a seamless background */
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.admin-dashboard-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-shadow: var(--accent-glow);
+}
+
+/* Sections within the Dashboard */
+.admin-dashboard-container section {
+    margin: 0 auto 40px; /* Center the sections with margin at the bottom */
+    padding: 25px;
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5); /* Stronger shadow for floating effect */
+    max-width: 1200px; /* Optional: keep sections contained for readability on large screens */
+}
+
+.admin-dashboard-container section h3 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+/* Form Group Styling (from FormPage.css, but refined here) */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="password"],
+.form-group textarea,
+.form-group select {
+    width: calc(100% - 22px);
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: #2D3748;
+    color: white;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group input[type="file"] {
+    padding: 10px 0;
+}
+
+/* Image preview for event form */
+.image-preview {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.image-preview img {
+    max-width: 250px;
+    height: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 5px;
+    background-color: var(--card-background);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.image-preview p {
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+/* Buttons */
+button {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 15px;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    background-color: var(--border-color);
+    color: #6B7280;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.cancel-button {
+    background-color: #EF4444; /* A red color for cancel */
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+.cancel-button:hover {
+    background-color: #DC2626;
+}
+
+/* Action buttons within table cells */
+.edit-button, .delete-button {
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    margin: 0 5px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.edit-button {
+    background-color: #FACC15; /* Warning yellow */
+    color: #333;
+}
+
+.edit-button:hover {
+    background-color: #EAB308;
+}
+
+.delete-button {
+    background-color: #EF4444; /* Danger red */
+}
+
+.delete-button:hover {
+    background-color: #DC2626;
+}
+
+.reactivate-button {
+    background-color: #10B981; /* Green for reactivating */
+    color: white;
+}
+
+.reactivate-button:hover {
+    background-color: #059669;
+}
+
+
+/* Table Styling */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 25px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px 18px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.95em;
+    color: var(--text-color);
+}
+
+.data-table th {
+    background-color: #2D3748;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: var(--card-background);
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(74, 144, 226, 0.1);
+}
+
+/* Specific alignment for actions column */
+.data-table td:last-child {
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Messages */
+.error-message {
+    color: #F87171;
+    background-color: #450A0A;
+    border: 1px solid #7F1D1D;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success-message {
+    color: #4ADE80;
+    background-color: #166534;
+    border: 1px solid #22C55E;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.loading-message {
+    color: #60A5FA;
+    background-color: #1E40AF;
+    border: 1px solid #3B82F6;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Admin-specific actions (e.g., logout button) */
+.dashboard-actions {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+}
+
+.logout-button {
+    background-color: #4B5563;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.logout-button:hover {
+    background-color: #374151;
+}
+.strikethrough-text {
+    text-decoration: line-through;
+    color: #6B7280;
+}
+
+.canceled-event-row {
+    background-color: #2D3748;
+    opacity: 0.7;
+}
+
+/* NEW: Download Button Style */
+.download-button {
+    background-color: #4ADE80;
+    color: #1A202C;
+}
+
+.download-button:hover {
+    background-color: #22C55E;
+}
+
+/* Small button styling for tables */
+.small-button {
+    padding: 6px 12px;
+    font-size: 0.85em;
+    margin: 2px;
+}
+
+/* Ensure spacing for multiple buttons in actions column */
+.data-table td:last-child button {
+    margin: 5px;
+    white-space: nowrap;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .admin-dashboard-container {
+        padding: 15px;
+    }
+
+    .admin-dashboard-container h2 {
+        font-size: 2em;
+    }
+
+    .admin-dashboard-container section h3 {
+        font-size: 1.7em;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    .edit-button, .delete-button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        margin: 2px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+
+    .logout-button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-dashboard-container h2 {
+        font-size: 1.6em;
+    }
+
+    .admin-dashboard-container section h3 {
+        font-size: 1.4em;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .edit-button, .delete-button {
+        display: block;
+        width: calc(100% - 10px);
+        margin: 5px auto;
+    }
+
+    .data-table th,
+    .data-table td {
+        white-space: normal;
+    }
+}

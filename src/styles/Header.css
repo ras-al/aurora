@@ -1,0 +1,180 @@
+/* src/styles/Header.css */
+
+.main-header {
+    background-color: var(--card-background);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--secondary-color);
+}
+
+.main-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1; /* allow nav to expand */
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+}
+
+/* Push logout button to the far right safely */
+.main-nav ul .logout-item {
+    margin-left: auto;
+}
+
+.main-nav li a,
+.main-nav li button {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 8px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.main-nav li a:hover,
+.main-nav li button:hover {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.main-nav li a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.header-logout-button {
+    background-color: #EF4444;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.95em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.header-logout-button:hover {
+    background-color: #DC2626;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .main-header {
+      justify-content: space-between;
+      padding: 15px 20px;
+    }
+    
+    .header-content {
+      flex-direction: row;
+      justify-content: space-between;
+      width: auto;
+      max-width: none;
+    }
+  
+    .logo {
+      margin-bottom: 0;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-background);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 0;
+        border-top: 1px solid var(--border-color);
+        z-index: 999;
+    }
+
+    .main-nav.open {
+        display: flex;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-nav li {
+        width: 100%;
+    }
+
+    .main-nav li a,
+    .main-nav li button {
+        padding: 12px 0;
+        display: block;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+    }
+    .logo {
+        font-size: 1.5em;
+    }
+}
