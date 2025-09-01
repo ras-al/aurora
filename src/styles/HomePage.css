@@ -484,6 +484,24 @@ section h2::after {
     padding: 10px 12px; font-size: 0.85em;
   }
 }
+.download-brochure-button {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  padding: 10px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.0em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 20px;
+}
+
+.download-brochure-button:hover {
+  background-color: #43C6AC;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
 
 @media (max-width: 480px) {
   .hero-content h1 { font-size: 1.8em; }
