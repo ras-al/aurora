@@ -317,7 +317,7 @@ function HomePage() {
         <div className="map-container">
           <iframe
             title="Google Maps Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.9796695277717!2d76.59379857502755!3d8.895311091176214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06020521e8e24b%3A0x8673f8e5f2998a44!2sTKM%20College%20of%20Engineering%2C%20Kollam!5e0!3m2!1sen!2sin!4v1699320286088!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3941.622293218647!2d76.6326382!3d8.9146612!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05fd3036020df5%3A0xc3c1007e5232dc27!2sTKM%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1756746190283!5m2!1sen!2sin"
             width="100%"
             height="450"
             style={{ border: 0 }}
