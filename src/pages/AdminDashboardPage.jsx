@@ -48,7 +48,7 @@ function AdminDashboardPage() {
   const [eventFormSuccess, setEventFormSuccess] = useState(null);
 
   const eventTypes = [
-    'Technical', 'Cultural', 'Workshop', 'Gaming', 'Sports', 'Talk', 'Other'
+    'Technical', 'Cultural', 'Workshop', 'Gaming', 'Competition', 'Talk', 'Other'
   ];
 
   const fetchData = async () => {
