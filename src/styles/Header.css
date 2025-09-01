@@ -1,6 +1,7 @@
 /* src/styles/Header.css */
 
 .main-header {
+    width: 100%;
     background-color: var(--card-background);
     background: linear-gradient(rgba(15, 17, 26, 0.5), rgba(15, 17, 26, 0.9)), no-repeat center center/cover;    
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
