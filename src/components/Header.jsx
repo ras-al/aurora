@@ -60,6 +60,7 @@ function Header() {
             <li><a href="#events" onClick={() => handleInternalLinkClick('#events')}>Events</a></li>
             <li><a href="#schedule" onClick={() => handleInternalLinkClick('#schedule')}>Schedule</a></li>
             <li><a href="#accommodation" onClick={() => handleInternalLinkClick('#accommodation')}>Accommodation</a></li>
+            <li><a href="#location" onClick={() => handleInternalLinkClick('#location')}>Location</a></li>
             <li><a href="#contact" onClick={() => handleInternalLinkClick('#contact')}>Contact</a></li>
 
 

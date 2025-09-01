@@ -308,12 +308,29 @@ function HomePage() {
         </p>
       </section>
 
-      {/* Contact Section - Add ID if you have one, or a simple footer */}
+      {/* Google Maps Section */}
+      <section id="location" className="location-section container common-section">
+        <h2>Locate the Campus</h2>
+        <div className="map-container">
+          <iframe
+            title="Google Maps Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.622293451221!2d76.63263818602225!3d8.914661178447274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05fd3036020df5%3A0xc3c1007e5232dc27!2sTKM%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1756735367166!5m2!1sen!2sin"
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </section>
+
+      {/* Contact Section */}
       <section id="contact" className="contact-section container common-section">
         <h2>Contact Us</h2>
         <p>Have questions? Reach out to us!</p>
         <p>Email: <a href="mailto:info@aurora.com">info@aurora.com</a></p>
-        <p>Phone: [+91-96565 85696]</p>
+        <p>Phone: +91-96565 85696</p>
       </section>
     </main>
   );
