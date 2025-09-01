@@ -15,7 +15,10 @@ import {
   serverTimestamp
 } from '../firebase';
 import '../styles/DashboardPage.css';
-import '../styles/UserDashboard.css'; // Ensure this is imported
+import '../styles/UserDashboard.css';
+
+// Using a named export for the QR code component
+import { QRCodeCanvas } from 'qrcode.react';
 
 function UserDashboardPage() {
   const { currentUser, userProfile, loading, logout, updateUserProfile } = useAuth();
@@ -156,6 +159,12 @@ function UserDashboardPage() {
     return 'N/A';
   };
 
+  // Prepare the data to be encoded in the QR code
+  const qrCodeData = JSON.stringify({
+    name: userProfile?.name,
+    email: userProfile?.email,
+    ticketId: userProfile?.auroraTicketId,
+  });
 
   return (
     <main className="user-dashboard-container container page-fade-in">
@@ -186,9 +195,9 @@ function UserDashboardPage() {
               <p className="ticket-date">Registered On: {getAuroraRegDate()}</p>
             </div>
             <div className="ticket-barcode">
-              {/* This could be a QR code or barcode image based on auroraTicketId */}
-              {/* For now, just a placeholder div */}
-              <div className="barcode-placeholder">SCAN ME</div>
+              {/* This is where you would place the QR code component. */}
+              <QRCodeCanvas value={qrCodeData} size={128} />
+              {/* <div className="barcode-placeholder">SCAN ME</div> */}
             </div>
           </div>
           <p className="ticket-disclaimer">Please present this pass at the registration desk.</p>
@@ -202,7 +211,6 @@ function UserDashboardPage() {
         <p><strong>Phone:</strong> {userProfile?.phone || 'N/A'}</p>
         <p><strong>IEEE Member:</strong> {userProfile?.isIEEE ? 'Yes' : 'No'}</p>
         {userProfile?.isIEEE && <p><strong>Member ID:</strong> {userProfile?.memberId || 'N/A'}</p>}
-        {/* The Aurora Ticket ID is now displayed in its dedicated section above */}
       </section>
 
       <section className="registered-events-section form-card">
