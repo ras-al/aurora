@@ -122,7 +122,7 @@ function HomePage() {
       {/* Hero Section */}
       <section id="hero" className="hero-section">
         <div className="hero-content container">
-          <h1 className="animate-hero-text">AURORA 2025: Ignite Your Future!</h1>
+          <h1 className="animate-hero-text">AURORA'25 : Ignite Your Future!</h1>
           <p className="subtitle animate-hero-text delay-1">Join us for an unforgettable experience of innovation, learning, and connection.</p>
           <Link to="/register-aurora" className="register-button animate-hero-button delay-2">
             Register for Aurora Now!
@@ -222,32 +222,41 @@ function HomePage() {
         <p>Get ready for a power-packed few days! Here's a glimpse of what's happening:</p>
         <div className="schedule-grid">
           <div className="schedule-day">
-            <h3>Day 1: March 10, 2025</h3>
+            <h3>Day 1: October 17, 2025</h3>
             <ul>
-              <li><strong>9:00 AM - 10:00 AM:</strong> Inauguration Ceremony</li>
-              <li><strong>10:30 AM - 1:00 PM:</strong> Hackathon - Round 1</li>
-              <li><strong>1:00 PM - 2:00 PM:</strong> Lunch Break</li>
-              <li><strong>2:00 PM - 5:00 PM:</strong> Technical Workshops (AI/ML, Web Dev)</li>
-              <li><strong>5:30 PM - 7:00 PM:</strong> Keynote Address by [Guest Speaker Name]</li>
+              <li><strong>04:30 PM - 05:30 PM :- APJ HALL</strong> Inauguration Ceremony</li>
+              <li><strong>05:30 PM - 06:30 PM :- APJ HALL</strong> Panel Discussion</li>
             </ul>
           </div>
           <div className="schedule-day">
-            <h3>Day 2: March 11, 2025</h3>
+            <h3>Day 2: October 18, 2025</h3>
             <ul>
-              <li><strong>9:00 AM - 12:00 PM:</strong> Robotics Competition - Prelims</li>
-              <li><strong>12:00 PM - 1:00 PM:</strong> Lunch Break</li>
-              <li><strong>1:00 PM - 4:00 PM:</strong> Cultural Competitions (Dance, Music)</li>
-              <li><strong>4:30 PM - 6:00 PM:</strong> Gaming Tournament Finals</li>
+              <li><strong>09:00 AM - 12:30 PM :- IDEA Lab</strong> Built a Bot</li>
+              <li><strong>09:00 AM - 12:30 PM :- EEE Lab</strong> Electrifying Mobility</li>
+              <li><strong>09:00 AM - 12:30 PM :- VLSI Lab</strong> Cadence Workshop</li>
+              <li><strong>09:00 AM - 12:30 PM :- Comm. Lab</strong> Volt Craft</li>
+              <li><strong>09:00 AM - 12:30 PM :- Room 101 & 105</strong> OHM Sweet OHM</li>
+              <li><strong>12:30 PM - 01:30 PM</strong> Lunch Break</li>
+              <li><strong>01:30 PM - 04:30 PM :- IDEA Lab</strong> Built a Bot</li>
+              <li><strong>01:30 PM - 04:30 PM :- EEE Lab</strong> Electrifying Mobility</li>
+              <li><strong>01:30 PM - 04:30 PM :- VLSI Lab</strong> Cadence Workshop</li>
+              <li><strong>01:30 PM - 04:30 PM :- Room 101 & 105</strong> OHM Sweet OHM</li>
+              <li><strong>05:30 PM - 08:30 PM :- APJ Park</strong> Culturals</li>
             </ul>
           </div>
           <div className="schedule-day">
-            <h3>Day 3: March 12, 2025</h3>
+            <h3>Day 3: October 19, 2025</h3>
             <ul>
-              <li><strong>9:00 AM - 12:00 PM:</strong> Project Expo & Science Fair</li>
-              <li><strong>12:00 PM - 1:00 PM:</strong> Lunch Break</li>
-              <li><strong>1:00 PM - 3:00 PM:</strong> Guest Lectures</li>
-              <li><strong>3:30 PM - 5:00 PM:</strong> Prize Distribution & Valedictory Function</li>
-              <li><strong>5:00 PM onwards:</strong> Farewell Party</li>
+              <li><strong>09:00 AM - 12:30 PM :- SS Lab</strong> Cloud Workshop</li>
+              <li><strong>09:00 AM - 12:30 PM :- N. EEE Soft. Lab</strong> IOT Workshop</li>
+              <li><strong>09:00 AM - 12:30 PM :- APJ Hall</strong> Motovate</li>
+              <li><strong>09:00 AM - 12:30 PM :- Room 101 & 105</strong> OHM Sweet OHM</li>
+              <li><strong>12:30 PM - 01:30 PM</strong> Lunch Break</li>
+              <li><strong>01:30 PM - 04:30 PM :- SS Lab</strong> Cloud Workshop</li>
+              <li><strong>01:30 PM - 04:30 PM :- N. EEE Soft. Lab</strong> IOT Workshop</li>
+              <li><strong>01:30 PM - 04:30 PM :- Room 101 & 105</strong> OHM Sweet OHM</li>
+              <li><strong>01:30 PM - 04:30 PM :- PTA Hall</strong> EmpowerHer</li>
+              <li><strong>05:30 PM - 08:30 PM :- APJ Park</strong> Culturals</li>
             </ul>
           </div>
         </div>
@@ -304,7 +313,7 @@ function HomePage() {
         <h2>Contact Us</h2>
         <p>Have questions? Reach out to us!</p>
         <p>Email: <a href="mailto:info@aurora.com">info@aurora.com</a></p>
-        <p>Phone: [+91-XXXXXXXXXX]</p>
+        <p>Phone: [+91-96565 85696]</p>
       </section>
     </main>
   );

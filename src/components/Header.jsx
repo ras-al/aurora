@@ -42,7 +42,7 @@ function Header() {
     <header className="main-header">
       <div className="container header-content">
         <Link to="/" className="logo" onClick={closeMenu}>
-          AURORA 2025
+          AURORA'25
         </Link>
         <nav className={`main-nav ${menuOpen ? 'open' : ''}`}>
           <ul>
