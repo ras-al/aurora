@@ -127,7 +127,7 @@ function HomePage() {
           </Link>
           <div className="countdown-container">
             <p className="event-begins-in">event begins in</p>
-            <CountdownTimer targetDate="2025-10-17T00:00:00" />
+            <CountdownTimer targetDate="2025-10-17T16:30:00" />
             <p className="event-dates">Oct 17, 18, 19 2025</p>
           </div>
         </div>
