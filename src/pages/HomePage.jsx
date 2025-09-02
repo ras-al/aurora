@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { db, collection, getDocs, arrayUnion, doc, updateDoc, getDoc } from '../firebase'; // Ensure 'getDoc' is imported
 import { useAuth } from '../contexts/AuthContext';
+import CountdownTimer from '../components/CountdownTimer';
 import '../styles/HomePage.css'; // Your homepage specific styles
 
 function HomePage() {
   const [events, setEvents] = useState([]);
-  const [loadingEvents, setLoadingEvents] = useState(true); 
+  const [loadingEvents, setLoadingEvents] = useState(true);
   const [errorEvents, setErrorEvents] = useState(null);
   const { currentUser, userProfile, updateUserProfile } = useAuth();
   const navigate = useNavigate();
@@ -124,6 +125,11 @@ function HomePage() {
           <Link to="/register-aurora" className="register-button animate-hero-button delay-2">
             Register for Aurora Now!
           </Link>
+          <div className="countdown-container">
+            <p className="event-begins-in">event begins in</p>
+            <CountdownTimer targetDate="2025-10-17T00:00:00" />
+            <p className="event-dates">Oct 17, 18, 19 2025</p>
+          </div>
         </div>
         {/* Scroll Down Indicator */}
         <a href="#about" className="scroll-down-indicator">
