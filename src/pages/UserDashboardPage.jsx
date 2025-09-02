@@ -152,7 +152,7 @@ function UserDashboardPage() {
   }
 
   // Helper function to format Aurora registration date
-  const getAuroraRegDate = () => {
+ const getAuroraRegDate = () => {
     if (userProfile?.auroraRegistrationDate && userProfile.auroraRegistrationDate.seconds) {
       return new Date(userProfile.auroraRegistrationDate.seconds * 1000).toLocaleDateString('en-IN');
     }
@@ -165,7 +165,30 @@ function UserDashboardPage() {
     email: userProfile?.email,
     ticketId: userProfile?.auroraTicketId,
   });
+  const formatDate = (date) => {
+    if (!date) return 'TBA';
+    let d = date;
 
+    // Handle Firestore Timestamps
+    if (d.toDate) {
+      d = d.toDate();
+    } 
+    // Handle ISO 8601 strings from other sources or direct date inputs
+    else if (typeof d === 'string') {
+      d = new Date(d);
+    }
+    
+    // Check if the resulting date is valid
+    if (isNaN(d.getTime())) {
+        return 'Invalid Date';
+    }
+    
+    return d.toLocaleDateString('en-IN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+};
   return (
     <main className="user-dashboard-container container page-fade-in">
       <h2>Welcome, {userProfile?.name || currentUser.email}!</h2>
@@ -232,7 +255,7 @@ function UserDashboardPage() {
                 {registeredEvents.map(event => (
                   <tr key={event.id} className={event.isCanceled ? 'canceled-event-row' : ''}>
                     <td><span className={event.isCanceled ? 'strikethrough-text' : ''}>{event.name}</span></td>
-                    <td>{event.date instanceof Date ? event.date.toLocaleDateString('en-IN') : 'N/A'}</td>
+                    <td>{formatDate(event.date)}</td>
                     <td>{event.location || 'N/A'}</td>
                     <td>{event.type}</td>
                     <td>{event.isCanceled ? 'Canceled' : 'Active'}</td>
