@@ -36,6 +36,7 @@ function AdminDashboardPage() {
     type: '',
     image: '',
     isCanceled: false,
+    limit: '',
   });
   const [editingEventId, setEditingEventId] = useState(null);
 
@@ -74,6 +75,12 @@ function AdminDashboardPage() {
           const q = query(usersCollectionRef, where('registeredEvents', 'array-contains', event.id));
           const registeredUsersSnapshot = await getDocs(q);
           const participantCount = registeredUsersSnapshot.size;
+          
+          // Sync the count in the background if it's different
+          if (event.participantCount !== participantCount) {
+            const eventDocRef = doc(db, 'events', event.id);
+            await updateDoc(eventDocRef, { participantCount });
+          }
 
           return {
             ...event,
@@ -163,6 +170,7 @@ function AdminDashboardPage() {
         type: newEvent.type,
         image: newEvent.image,
         isCanceled: newEvent.isCanceled || false,
+        limit: parseInt(newEvent.limit, 10) || 0,
       };
 
       if (editingEventId) {
@@ -175,13 +183,14 @@ function AdminDashboardPage() {
       } else {
         await addDoc(collection(db, 'events'), {
           ...eventData,
+          participantCount: 0,
           createdAt: serverTimestamp()
         });
         setEventFormSuccess('Event added successfully!');
       }
 
       setEditingEventId(null);
-      setNewEvent({ name: '', date: '', description: '', location: '', type: '', image: '', isCanceled: false });
+      setNewEvent({ name: '', date: '', description: '', location: '', type: '', image: '', isCanceled: false, limit: '' });
       await fetchData();
 
     } catch (err) {
@@ -239,6 +248,7 @@ function AdminDashboardPage() {
       type: event.type,
       image: event.image || '',
       isCanceled: event.isCanceled || false,
+      limit: event.limit || '',
     });
     setEventFormError(null);
     setEventFormSuccess(null);
@@ -247,7 +257,7 @@ function AdminDashboardPage() {
 
   const handleCancelEdit = () => {
     setEditingEventId(null);
-    setNewEvent({ name: '', date: '', description: '', location: '', type: '', image: '', isCanceled: false });
+    setNewEvent({ name: '', date: '', description: '', location: '', type: '', image: '', isCanceled: false, limit: '' });
     setEventFormError(null);
     setEventFormSuccess(null);
   };
@@ -431,6 +441,16 @@ function AdminDashboardPage() {
             </select>
           </div>
           <div className="form-group">
+            <label htmlFor="eventLimit">Participant Limit (0 for unlimited)</label>
+            <input
+              type="number"
+              id="eventLimit"
+              value={newEvent.limit}
+              onChange={(e) => setNewEvent({ ...newEvent, limit: e.target.value })}
+              min="0"
+            />
+          </div>
+          <div className="form-group">
             <label htmlFor="eventImage">Event Picture</label>
             <input
               type="file"
@@ -482,7 +502,7 @@ function AdminDashboardPage() {
                   <th>Date</th>
                   <th>Location</th>
                   <th>Type</th>
-                  <th>Participants</th>
+                  <th>Participants / Limit</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -494,7 +514,7 @@ function AdminDashboardPage() {
                     <td>{event.date instanceof Date ? event.date.toLocaleDateString('en-IN') : 'N/A'}</td>
                     <td>{event.location || 'N/A'}</td>
                     <td>{event.type}</td>
-                    <td>{event.participantCount}</td>
+                    <td>{event.participantCount} / {event.limit > 0 ? event.limit : '∞'}</td>
                     <td>{event.isCanceled ? 'Canceled' : 'Active'}</td>
                     <td>
                       <button onClick={() => handleEditEvent(event)} className="edit-button small-button">Edit</button>

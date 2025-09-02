@@ -1,7 +1,7 @@
 // src/pages/HomePage.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { db, collection, getDocs, arrayUnion, doc, updateDoc } from '../firebase'; // Ensure 'doc' and 'updateDoc' are imported
+import { db, collection, getDocs, arrayUnion, doc, updateDoc, getDoc } from '../firebase'; // Ensure 'getDoc' is imported
 import { useAuth } from '../contexts/AuthContext';
 import '../styles/HomePage.css'; // Your homepage specific styles
 
@@ -12,36 +12,36 @@ function HomePage() {
   const { currentUser, userProfile, updateUserProfile } = useAuth();
   const navigate = useNavigate();
 
+  const fetchEvents = async () => {
+    try {
+      const eventsCollectionRef = collection(db, 'events');
+      const eventSnapshot = await getDocs(eventsCollectionRef);
+      const eventsList = eventSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+      eventsList.forEach(event => {
+          if (event.date && event.date.toDate) {
+              event.date = event.date.toDate();
+          } else if (typeof event.date === 'string') {
+              event.date = new Date(event.date);
+          }
+      });
+
+      eventsList.sort((a, b) => {
+          const dateA = a.date instanceof Date ? a.date.getTime() : 0;
+          const dateB = b.date instanceof Date ? b.date.getTime() : 0;
+          return dateA - dateB;
+      });
+
+      setEvents(eventsList);
+    } catch (err) {
+      console.error("Error fetching events:", err);
+      setErrorEvents("Failed to load events. Please try again later.");
+    } finally {
+      setLoadingEvents(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const eventsCollectionRef = collection(db, 'events');
-        const eventSnapshot = await getDocs(eventsCollectionRef); // getDocs is used here
-        const eventsList = eventSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-        eventsList.forEach(event => {
-            if (event.date && event.date.toDate) {
-                event.date = event.date.toDate();
-            } else if (typeof event.date === 'string') {
-                event.date = new Date(event.date);
-            }
-        });
-
-        eventsList.sort((a, b) => {
-            const dateA = a.date instanceof Date ? a.date.getTime() : 0;
-            const dateB = b.date instanceof Date ? b.date.getTime() : 0;
-            return dateA - dateB;
-        });
-
-        setEvents(eventsList);
-      } catch (err) {
-        console.error("Error fetching events:", err);
-        setErrorEvents("Failed to load events. Please try again later.");
-      } finally {
-        setLoadingEvents(false);
-      }
-    };
-
     fetchEvents();
   }, []);
 
@@ -61,7 +61,6 @@ function HomePage() {
       return;
     }
 
-    // Check if userProfile and auroraTicketId exist
     if (!userProfile?.auroraTicketId) {
       alert('You must register for Aurora 2025 first to join individual events.');
       navigate('/register-aurora');
@@ -74,14 +73,13 @@ function HomePage() {
     }
 
     try {
-      // Update the user's profile with the new registered event
-      const userDocRef = doc(db, 'users', currentUser.uid); // Get reference to user's document
-      await updateDoc(userDocRef, { // Use updateDoc to add the event ID
+      const userDocRef = doc(db, 'users', currentUser.uid);
+      await updateDoc(userDocRef, {
         registeredEvents: arrayUnion(eventId)
       });
-
-      // Update local userProfile state immediately
-      updateUserProfile(currentUser.uid, { registeredEvents: arrayUnion(eventId) });
+      
+      // Update local userProfile state immediately by re-fetching
+      await updateUserProfile(currentUser.uid, {});
 
 
       alert(`Successfully registered for ${eventName}!`);
@@ -104,9 +102,8 @@ function HomePage() {
 
   const formatDate = (date) => {
     if (!date) return 'TBA';
-    // Ensure date is a valid Date object
     const d = date instanceof Date ? date : new Date(date);
-    if (isNaN(d.getTime())) { // Check for invalid date
+    if (isNaN(d.getTime())) {
         return 'Invalid Date';
     }
     return d.toLocaleDateString('en-IN', {
@@ -165,6 +162,7 @@ function HomePage() {
                 {groupedEvents[type].map(event => {
                   const hasAuroraTicket = userProfile?.auroraTicketId;
                   const isRegisteredForThisEvent = userProfile?.registeredEvents?.includes(event.id);
+                  const isFull = event.limit > 0 && (event.participantCount || 0) >= event.limit;
 
                   const canRegisterDirectly = currentUser && hasAuroraTicket && !isRegisteredForThisEvent;
 
@@ -182,6 +180,8 @@ function HomePage() {
                       <div className="action-area">
                         {event.isCanceled ? (
                             <button className="register-event-button disabled-button" disabled>Canceled</button>
+                        ) : isFull ? (
+                            <button className="register-event-button">Registration Full</button>
                         ) : (
                             canRegisterDirectly ? (
                                 <button

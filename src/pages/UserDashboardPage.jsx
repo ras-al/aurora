@@ -92,21 +92,9 @@ function UserDashboardPage() {
         updatedAt: serverTimestamp(),
       });
 
-      const eventDocRef = doc(db, 'events', eventId);
-      const eventSnap = await getDoc(eventDocRef);
-      if (eventSnap.exists()) {
-          const currentCount = eventSnap.data().participantCount || 0;
-          if (currentCount > 0) {
-              await updateDoc(eventDocRef, {
-                  participantCount: currentCount - 1,
-                  updatedAt: serverTimestamp()
-              });
-          }
-      }
-
-      alert(`Successfully canceled registration for "${eventName}".`);
-      await updateUserProfile(currentUser.uid, {});
-      fetchUserEvents();
+      alert(`Successfully canceled registration for "${eventName}". An admin will sync the counts shortly.`);
+      await updateUserProfile(currentUser.uid, {}); // This re-fetches the user profile
+      fetchUserEvents(); // This re-fetches the events list
 
     } catch (error) {
       console.error("Error canceling participation:", error);
