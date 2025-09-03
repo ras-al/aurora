@@ -7,7 +7,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <p>&copy; {new Date().getFullYear()} AURORA'25 - TKMCE Kollam. All Rights Reserved.</p>
-        <p>Powered by IEEE SBC TKMCE</p>
+        <p>Powered by IEEE SB TKMCE</p>
       </div>
     </footer>
   );

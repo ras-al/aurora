@@ -51,6 +51,96 @@ function AppContent() {
         </div>
       ) : (
         <div className="app-container">
+          <div className="stars">
+            {/* Normal stars */}
+            {[...Array(100)].map((_, i) => (
+              <div
+                key={`star-${i}`}
+                className="star"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  width: `${Math.random() * 2 + 1}px`,
+                  height: `${Math.random() * 2 + 1}px`,
+                  animation: `pulse ${Math.random() * 2 + 1.5}s infinite, 
+                              twinkle ${Math.random() * 5 + 3}s infinite`,
+                  animationDelay: `${Math.random() * 5}s`,
+                }}
+              />
+            ))}
+
+            {/* Shooting stars */}
+            {[...Array(15)].map((_, i) => (
+              <div
+                key={`shooting-${i}`}
+                className="star shooting"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  width: `${Math.random() * 2 + 1}px`,
+                  height: `${Math.random() * 2 + 1}px`,
+                  animation: `shooting-star ${Math.random() * 3 + 2}s linear infinite`,
+                  animationDelay: `${Math.random() * 10}s`,
+                }}
+              />
+            ))}
+
+            {/* Tiny stars */}
+            {[...Array(100)].map((_, i) => (
+              <div
+                key={`tiny-${i}`}
+                className="star tiny"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  width: `1px`,
+                  height: `1px`,
+                  animationDuration: `${Math.random() * 6 + 3}s`,
+                }}
+              />
+            ))}
+
+            {/* Comets */}
+            {[...Array(3)].map((_, i) => (
+              <div
+                key={`comet-${i}`}
+                className="star comet"
+                style={{
+                  top: `${Math.random() * 50}%`,
+                  left: `${Math.random() * 100}%`,
+                  width: `3px`,
+                  height: `3px`,
+                  backgroundColor: "#fff",
+                  boxShadow: "0 0 20px 5px rgba(255,255,255,0.6)",
+                  animation: `comet ${Math.random() * 8 + 6}s linear infinite`,
+                  animationDelay: `${Math.random() * 15}s`,
+                }}
+              />
+            ))}
+
+            {/* Nebula background blobs */}
+            <div
+              className="nebula"
+              style={{
+                top: "20%",
+                left: "10%",
+                width: "600px",
+                height: "600px",
+                
+              }}
+            />
+            <div
+              className="nebula"
+              style={{
+                bottom: "10%",
+                right: "15%",
+                width: "500px",
+                height: "500px",
+                
+              }}
+            />
+          </div>
+
           <Header /> {/* Render Header */}
           <Routes>
             <Route path="/" element={<HomePage />} />

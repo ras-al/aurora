@@ -3,7 +3,32 @@ body {
   background-image: url('/space-hero.png');
   background-size: cover;
   background-attachment: fixed;
+  
 }
+
+.stars {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; 
+}
+
+.stars .star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation-name: pulse;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.stars .star.shooting {
+  animation-name: shooting-star;
+  animation-timing-function: ease-in-out;
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
@@ -84,4 +109,36 @@ main {
   margin: 0;
   font-size: 0.9rem;
   color: #9CA3AF;
+}
+
+/* Extra animations */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes drift {
+  from { transform: translateY(0) translateX(0); }
+  to { transform: translateY(-10px) translateX(5px); }
+}
+
+@keyframes comet {
+  0% {
+    transform: translateX(100vw) translateY(-50vh) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50vw) translateY(50vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Nebula background glow metaphor */
+.nebula {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+  z-index: -2;
+  animation: drift 20s ease-in-out infinite alternate;
 }
