@@ -267,8 +267,6 @@ section h2::after {
 }
 
 .event-card p {
-  text-align: justify;
-  line-height: 1.6;
   font-size: 0.95em;
   color: var(--text-color);
   line-height: 1.6;
