@@ -24,13 +24,12 @@
   max-width: 450px; /* This limits the form's maximum width */
   box-sizing: border-box;
   border: 1px solid var(--border-color);
-  /* margin: 0 auto; - Can be removed if parent is centering, but harmless */
   text-align: left;
 }
 
 .form-group {
   margin-bottom: 20px;
-  text-align: left; /* Align form groups to the left */
+  text-align: left;
 }
 
 .form-group label {
@@ -40,10 +39,16 @@
   color: var(--text-color);
 }
 
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .auth-form input[type="text"],
 .auth-form input[type="email"],
 .auth-form input[type="password"] {
-  width: calc(100% - 22px);
+  width: 100%;
   padding: 12px;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -52,10 +57,36 @@
   background-color: #2D3748;
   color: white;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  padding-right: 45px; /* Make space for the icon button */
 }
 
-.auth-form button {
-  width: 100%;
+.password-toggle-button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #9CA3AF; /* Icon color */
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle-button:hover {
+  color: var(--primary-color);
+}
+
+.password-toggle-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+
+.auth-form button[type="submit"] {
+  width: 94%;
   padding: 12px;
   font-size: 1.1rem;
   border-radius: 8px;
@@ -68,7 +99,7 @@
   transition: background-color 0.3s ease;
 }
 
-.auth-form button:hover {
+.auth-form button[type="submit"]:hover {
   background-color: var(--secondary-color);
 }
 
@@ -91,13 +122,17 @@
   text-decoration: underline;
 }
 
-/* Added styles for error messages */
-.form-error {
+.error-message {
   color: #e53e3e;
-  font-size: 0.85rem;
-  margin-top: 5px;
-  display: block;
+  background-color: rgba(229, 62, 62, 0.1);
+  border: 1px solid rgba(229, 62, 62, 0.5);
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 0.9em;
 }
+
 
 /* Focus states for inputs */
 .auth-form input:focus {
