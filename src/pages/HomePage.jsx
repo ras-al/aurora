@@ -142,11 +142,17 @@ function HomePage() {
       <section id="about" className="about-aurora container common-section">
         <h2>About Aurora</h2>
         <p>
-          Aurora is the annual technical and cultural fest of TKM College of Engineering,
-          Kollam. It is a celebration of innovation, talent, and creativity, bringing
-          together students, professionals, and enthusiasts from across the nation.
-          Prepare for thrilling competitions, insightful workshops, captivating performances,
-          and a vibrant atmosphere of learning and networking.
+          Welcome to Aurora 2025 – the flagship technical fest of IEEE SB TKMCE, where creativity meets
+technology and innovation knows no bounds. A premier gathering of students, professionals, and tech
+enthusiasts. Aurora is a vibrant platform for learning, collaboration, and exploration.
+With an exciting lineup of workshops, competitions, expert talks, and project showcases, Aurora brings
+together the brightest minds to spark curiosity, challenge intellect, and inspire the next generation of
+engineers and innovators. It is a space where groundbreaking ideas come alive, hands-on experience
+with emerging technologies is gained, and innovation is celebrated.
+Aurora celebrates innovation while connecting participants with industry leaders and emerging
+technologies. Step into Aurora 2025—an unforgettable journey where ideas come alive and the future is
+shaped
+
         </p>
         <a href="https://drive.google.com/file/d/1zxEWzA1eeCYvGxojC3n-D_PsaQJmNAaS/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="download-brochure-button">
           Download Brochure
