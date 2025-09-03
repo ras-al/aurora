@@ -134,7 +134,7 @@ function HomePage() {
         {/* Scroll Down Indicator */}
         <a href="#about" className="scroll-down-indicator">
             Scroll Down
-            <i className="fas fa-chevron-down"></i> {/* Requires Font Awesome or similar icon library */}
+            <i className="fas fa-chevron-down"></i>
         </a>
       </section>
 
@@ -154,7 +154,7 @@ technologies. Step into Aurora 2025—an unforgettable journey where ideas come 
 shaped
 
         </p>
-        <a href="https://drive.google.com/file/d/1zxEWzA1eeCYvGxojC3n-D_PsaQJmNAaS/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="download-brochure-button">
+        <a href="https://drive.google.com/file/d/1hnwrOU52K0eyb9IyAjlLs75swZ_spn3g/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="download-brochure-button">
           Download Brochure
         </a>
       </section>
