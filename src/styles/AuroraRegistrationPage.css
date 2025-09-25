@@ -1,0 +1,135 @@
+/* src/styles/AuroraRegistrationPage.css */
+
+/* Re-use the container style from AuthForm.css for consistency */
+.auth-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  width: 100%;
+  background: none;
+}
+
+.auth-form-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+  text-shadow: var(--accent-glow);
+  text-align: center;
+}
+
+.registration-form {
+  background-color: var(--card-background);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  width: 100%;
+  max-width: 600px; /* Wider for more fields */
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="email"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1em;
+  box-sizing: border-box;
+  background-color: #2D3748;
+  color: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Make read-only fields look distinct but not disabled */
+.registration-form input[readonly] {
+    background-color: #1A202C;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.registration-form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+/* Checkbox Styling */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  margin-right: 12px;
+  height: 18px;
+  width: 18px;
+  accent-color: var(--primary-color);
+}
+
+.checkbox-group label {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+/* Fee and Payment Button */
+.registration-fee {
+  text-align: center;
+  margin: 30px 0;
+  padding: 15px;
+  background-color: rgba(15, 17, 26, 0.5);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.registration-fee h3 {
+  font-family: 'Orbitron', sans-serif; /* Match title font */
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  text-shadow: var(--accent-glow);
+  margin: 0;
+}
+
+.payment-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.payment-button:disabled {
+    background-color: var(--border-color);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Note at the bottom */
+.note {
+  text-align: center;
+  margin-top: 20px;
+  color: #9CA3AF;
+  font-size: 0.9rem;
+}

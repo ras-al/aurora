@@ -1,30 +1,29 @@
 // src/pages/AuroraRegistrationPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate, Link } from 'react-router-dom'; // Import Link
+import { useNavigate, Link } from 'react-router-dom';
+import '../styles/AuroraRegistrationPage.css';
 
 function AuroraRegistrationPage() {
   const { currentUser, userProfile, updateUserProfile } = useAuth();
   const navigate = useNavigate();
 
-  // Initialize state with existing userProfile data or defaults
   const [isIEEE, setIsIEEE] = useState(userProfile?.isIEEE || false);
   const [memberId, setMemberId] = useState(userProfile?.memberId || '');
   const [fullName, setFullName] = useState(userProfile?.name || '');
   const [email, setEmail] = useState(userProfile?.email || '');
-  const [phone, setPhone] = useState(''); // Phone might not be in profile yet
-  const [college, setCollege] = useState('');
+  const [phone, setPhone] = useState(userProfile?.phone || '');
+  const [college, setCollege] = useState(userProfile?.college || '');
   const [hasRegistered, setHasRegistered] = useState(false);
 
   useEffect(() => {
     if (userProfile) {
-      // Pre-fill if data exists in profile
       setFullName(userProfile.name);
       setEmail(userProfile.email);
       setIsIEEE(userProfile.isIEEE || false);
       setMemberId(userProfile.memberId || '');
-      setPhone(userProfile.phone || ''); // Populate phone if it exists
-      setCollege(userProfile.college || ''); // Populate college if it exists
+      setPhone(userProfile.phone || '');
+      setCollege(userProfile.college || '');
 
       if (userProfile.auroraTicketId) {
         setHasRegistered(true);
@@ -44,17 +43,22 @@ function AuroraRegistrationPage() {
         return;
     }
 
-    const registrationId = `AURORA-<span class="math-inline">\{currentUser\.uid\.substring\(0, 8\)\}\-</span>{Date.now()}`; // Unique ID
+    if (!phone.trim() || !college.trim()) {
+        alert('Please fill out your Phone Number and College Name.');
+        return;
+    }
+
+    const registrationId = `AUR-${currentUser.uid.substring(0, 6)}-${Date.now().toString().slice(-6)}`;
 
     const success = await updateUserProfile(currentUser.uid, {
-        name: fullName, // Update name if user filled it on this form
+        name: fullName,
         phone: phone,
         college: college,
         isIEEE: isIEEE,
-        memberId: isIEEE ? memberId : null,
-        auroraTicketId: registrationId, // Mark as registered
-        auroraRegistrationDate: new Date(), // Add registration date
-        auroraFee: registrationFee, // Store the fee paid
+        memberId: isIEEE ? memberId : '',
+        auroraTicketId: registrationId,
+        auroraRegistrationDate: new Date(),
+        auroraFee: registrationFee,
     });
 
     if (success) {
@@ -65,23 +69,22 @@ function AuroraRegistrationPage() {
     }
   };
 
-  if (!currentUser || !userProfile) { // Still loading or not logged in
-    return <main className="form-page-container container page-fade-in">
+  if (!currentUser || !userProfile) {
+    return <main className="auth-form-container container page-fade-in">
             <p>Loading user data or please <Link to="/login">login</Link>.</p>
            </main>;
   }
 
-  if (hasRegistered) { // Already registered
-    return <main className="form-page-container container page-fade-in">
+  if (hasRegistered) {
+    return <main className="auth-form-container container page-fade-in">
             <p>You are already registered for Aurora. Redirecting...</p>
            </main>;
   }
 
-
   return (
-    <main className="form-page-container container page-fade-in">
+    <main className="auth-form-container container page-fade-in">
       <h2>Register for Aurora 2025</h2>
-      <form onSubmit={handleSubmit} className="form-card">
+      <form onSubmit={handleSubmit} className="registration-form">
         <div className="form-group">
           <label htmlFor="fullName">Full Name</label>
           <input
@@ -98,7 +101,7 @@ function AuroraRegistrationPage() {
             type="email"
             id="email"
             value={email}
-            readOnly // Email should be read-only as it's from auth
+            readOnly
             required
           />
         </div>
@@ -109,6 +112,7 @@ function AuroraRegistrationPage() {
             id="phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
+            placeholder="Enter your phone number"
             required
           />
         </div>
@@ -119,6 +123,7 @@ function AuroraRegistrationPage() {
             id="college"
             value={college}
             onChange={(e) => setCollege(e.target.value)}
+            placeholder="Enter your college name"
             required
           />
         </div>
@@ -141,6 +146,7 @@ function AuroraRegistrationPage() {
               id="memberId"
               value={memberId}
               onChange={(e) => setMemberId(e.target.value)}
+              placeholder="Enter your IEEE Member ID"
               required={isIEEE}
             />
           </div>
