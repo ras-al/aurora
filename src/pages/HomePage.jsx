@@ -114,6 +114,8 @@ function HomePage() {
     });
   };
 
+  const allActiveEvents = events.filter(event => !event.isCanceled);
+  const isSingleEvent = allActiveEvents.length === 1;
 
   return (
     <main className="homepage page-fade-in">
@@ -170,7 +172,7 @@ shaped
           Object.keys(groupedEvents).map(type => (
             <div key={type} className="event-category-section">
               <h3>{type} Events</h3>
-              <div className="event-cards-grid">
+              <div className={`event-cards-grid ${isSingleEvent ? 'single-event-grid' : ''}`}>
                 {groupedEvents[type].map(event => {
                   const hasAuroraTicket = userProfile?.auroraTicketId;
                   const isRegisteredForThisEvent = userProfile?.registeredEvents?.includes(event.id);

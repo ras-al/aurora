@@ -274,6 +274,17 @@ section h2::after {
   flex-grow: 1;
 }
 
+.event-cards-grid.single-event-grid {
+  display: flex;
+  justify-content: center;
+  max-width: 400px; 
+  margin: 0 auto;
+}
+
+.event-cards-grid.single-event-grid .event-card {
+  width: 100%;
+}
+
 .event-card .action-area {
   display: flex;
   justify-content: flex-end;
