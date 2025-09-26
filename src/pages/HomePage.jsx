@@ -248,31 +248,30 @@ shaped
           <div className="schedule-day">
             <h3>Day 2: October 18, 2025</h3>
             <ul>
-              <li><strong>09:00 AM - 12:30 PM :- IDEA Lab</strong> Built a Bot</li>
-              <li><strong>09:00 AM - 12:30 PM :- EEE Lab</strong> Electrifying Mobility</li>
-              <li><strong>09:00 AM - 12:30 PM :- VLSI Lab</strong> Cadence Workshop</li>
-              <li><strong>09:00 AM - 12:30 PM :- Comm. Lab</strong> Volt Craft</li>
-              <li><strong>09:00 AM - 12:30 PM :- Room 101 & 105</strong> OHM Sweet OHM</li>
+              <li><strong>09:00 AM - 12:30 PM</strong> Built a Bot</li>
+              <li><strong>09:00 AM - 12:30 PM</strong> Cloud Workshop</li>
+              <li><strong>09:00 AM - 12:30 PM</strong> Cadence Workshop</li>
+              <li><strong>09:00 AM - 12:30 PM</strong> Volt Craft</li>
+              <li><strong>09:00 AM - 12:30 PM</strong> OHM Sweet OHM</li>
               <li><strong>12:30 PM - 01:30 PM</strong> Lunch Break</li>
-              <li><strong>01:30 PM - 04:30 PM :- IDEA Lab</strong> Built a Bot</li>
-              <li><strong>01:30 PM - 04:30 PM :- EEE Lab</strong> Electrifying Mobility</li>
-              <li><strong>01:30 PM - 04:30 PM :- VLSI Lab</strong> Cadence Workshop</li>
-              <li><strong>01:30 PM - 04:30 PM :- Room 101 & 105</strong> OHM Sweet OHM</li>
-              <li><strong>05:30 PM - 08:30 PM :- APJ Park</strong> Culturals</li>
+              <li><strong>01:30 PM - 04:30 PM</strong> Built a Bot</li>
+              <li><strong>01:30 PM - 04:30 PM</strong> Cloud Workshop</li>
+              <li><strong>01:30 PM - 04:30 PM</strong> Cadence Workshop</li>
+              <li><strong>01:30 PM - 04:30 PM</strong> OHM Sweet OHM</li>
+              <li><strong>05:30 PM - 08:30 PM</strong> Culturals</li>
             </ul>
           </div>
           <div className="schedule-day">
             <h3>Day 3: October 19, 2025</h3>
             <ul>
-              <li><strong>09:00 AM - 12:30 PM :- SS Lab</strong> Cloud Workshop</li>
-              <li><strong>09:00 AM - 12:30 PM :- N. EEE Soft. Lab</strong> IOT Workshop</li>
-              <li><strong>09:00 AM - 12:30 PM :- APJ Hall</strong> Motovate</li>
-              <li><strong>09:00 AM - 12:30 PM :- Room 101 & 105</strong> OHM Sweet OHM</li>
+              <li><strong>09:00 AM - 12:30 PM</strong> Electrifying Mobility</li>
+              <li><strong>09:00 AM - 12:30 PM</strong> IOT Workshop</li>
+              <li><strong>09:00 AM - 12:30 PM</strong> Motovate</li>
+              <li><strong>09:00 AM - 12:30 PM</strong> OHM Sweet OHM</li>
               <li><strong>12:30 PM - 01:30 PM</strong> Lunch Break</li>
-              <li><strong>01:30 PM - 04:30 PM :- SS Lab</strong> Cloud Workshop</li>
-              <li><strong>01:30 PM - 04:30 PM :- N. EEE Soft. Lab</strong> IOT Workshop</li>
-              <li><strong>01:30 PM - 04:30 PM :- Room 101 & 105</strong> OHM Sweet OHM</li>
-              <li><strong>01:30 PM - 04:30 PM :- PTA Hall</strong> EmpowerHer</li>
+              <li><strong>01:30 PM - 04:30 PM</strong> Electrifying Mobility</li>
+              <li><strong>01:30 PM - 04:30 PM</strong> IOT Workshop</li>
+              <li><strong>01:30 PM - 04:30 PM</strong> OHM Sweet OHM</li>
               <li><strong>05:30 PM - 08:30 PM :- APJ Park</strong> Culturals</li>
             </ul>
           </div>
