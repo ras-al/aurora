@@ -17,10 +17,11 @@ import AboutUsPage from './pages/AboutUsPage';
 import PricingPage from './pages/PricingPage';
 import CancellationPolicyPage from './pages/CancellationPolicyPage';
 import ComingSoonPage from './pages/ComingSoonPage';
+import ScoreboardPage from './pages/ScoreboardPage';
 
 
 // Import your common components
-import Header from './components/Header'; // Ensure Header is imported
+import Header from './components/Header';
 import Footer from './components/Footer';
 
 // Import AuthProvider and useAuth from your context
@@ -164,6 +165,7 @@ function AppContent() {
             <Route path="/cancellation-policy" element={<CancellationPolicyPage />} />
             <Route path="/register-aurora" element={<ComingSoonPage />} />
             {/*<Route path="/register-aurora" element={currentUser ? <AuroraRegistrationPage /> : <Navigate to="/login" replace />}/>*/}
+            <Route path="/scoreboard" element={<ScoreboardPage />} />
 
 
 

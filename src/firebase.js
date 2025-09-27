@@ -64,7 +64,7 @@ export {
   arrayRemove,
   query,
   where,
-  getDocs,           // Export getDocs
-  addDoc,            // Export addDoc
-  serverTimestamp    // Export serverTimestamp
+  getDocs,           
+  addDoc,        
+  serverTimestamp, 
 };
