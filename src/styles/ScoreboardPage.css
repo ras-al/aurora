@@ -1,0 +1,56 @@
+.scoreboard-container {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--text-color);
+}
+
+.scoreboard-container h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-shadow: var(--accent-glow);
+    margin-bottom: 40px;
+}
+
+.scoreboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.scoreboard-table th, .scoreboard-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.scoreboard-table th {
+    background-color: rgba(99, 102, 241, 0.2);
+    font-weight: 600;
+}
+
+.scoreboard-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.scoreboard-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.rank-cell {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    width: 50px;
+    text-align: center;
+}
+
+.score-cell {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+}

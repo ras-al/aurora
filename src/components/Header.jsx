@@ -55,6 +55,7 @@ function Header() {
                 Home
               </NavLink>
             </li>
+
             {/* Internal links to sections on HomePage */}
             <li><a href="/#about" onClick={() => handleInternalLinkClick('#about')}>About</a></li>
             <li><a href="/#events" onClick={() => handleInternalLinkClick('#events')}>Events</a></li>
@@ -66,7 +67,7 @@ function Header() {
                 Contact
               </NavLink>
             </li>
-
+            <li><NavLink to="/scoreboard">Scoreboard</NavLink></li>
 
             {currentUser && !isAdmin && (
               <li>

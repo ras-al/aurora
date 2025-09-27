@@ -6,8 +6,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  sendEmailVerification,
   sendPasswordResetEmail,
-  sendEmailVerification
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -51,8 +51,6 @@ export {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  sendPasswordResetEmail,
-  sendEmailVerification,
   // Firestore Functions
   collection,
   doc,
@@ -64,7 +62,9 @@ export {
   arrayRemove,
   query,
   where,
-  getDocs,           // Export getDocs
-  addDoc,            // Export addDoc
-  serverTimestamp    // Export serverTimestamp
+  getDocs,           
+  addDoc,        
+  serverTimestamp,
+  sendEmailVerification,
+  sendPasswordResetEmail,    
 };
