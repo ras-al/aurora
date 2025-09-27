@@ -10,6 +10,7 @@ function SignupPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { register } = useAuth();
@@ -18,6 +19,7 @@ function SignupPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setMessage('');
     if (password !== confirmPassword) {
       setError('Passwords do not match!');
       return;
@@ -26,8 +28,7 @@ function SignupPage() {
     setLoading(true);
     try {
       await register(email, password, { name: name });
-      alert('Registration successful! Please log in.');
-      navigate('/login');
+      setMessage('Registration successful! A verification email has been sent (Check Spam folder if not seen). Please verify your email before logging in.');
     } catch (err)    
     {  
     setError(err.message);
@@ -40,6 +41,7 @@ function SignupPage() {
     <main className="auth-form-container container page-fade-in">
       <h2>Create Your Aurora Account</h2>
       {error && <div className="error-message">{error}</div>}
+      {message && <div className="success-message">{message}</div>}
       <form onSubmit={handleSubmit} className="auth-form">
         <div className="form-group">
           <label htmlFor="name">Full Name</label>

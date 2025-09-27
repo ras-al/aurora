@@ -5,7 +5,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  sendEmailVerification
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -49,6 +51,8 @@ export {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  sendPasswordResetEmail,
+  sendEmailVerification,
   // Firestore Functions
   collection,
   doc,

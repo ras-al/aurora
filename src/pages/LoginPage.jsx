@@ -76,6 +76,9 @@ function LoginPage() {
           {loading ? 'Logging In...' : 'Login'}
         </button>
         <p className="form-footer">
+          <Link to="/forgot-password">Forgot Password?</Link>
+        </p>
+        <p className="form-footer">
           Don't have an account? <Link to="/signup">Sign Up</Link>
         </p>
       </form>

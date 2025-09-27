@@ -9,6 +9,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  sendPasswordResetEmail,
+  sendEmailVerification,
   doc,
   getDoc,
   setDoc,
@@ -35,6 +37,7 @@ export function AuthProvider({ children }) {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+      await sendEmailVerification(user);
       const userDocRef = doc(db, 'users', user.uid);
       await setDoc(userDocRef, {
         email: user.email,
@@ -58,18 +61,52 @@ export function AuthProvider({ children }) {
     }
   };
 
-  // Consolidated login function for both users and admins
+  // MODIFIED LOGIN FUNCTION TO ENFORCE EMAIL VERIFICATION
   const login = async (email, password) => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (!user.emailVerified) {
+        // Resend verification email for user convenience
+        await sendEmailVerification(user);
+        // Sign the unverified user out immediately
+        await signOut(auth);
+        // Throw a specific error to display on the login page
+        throw new Error('Your email is not verified. A new verification email has been sent. Please check your inbox.');
+      }
+      
+      // If email is verified, proceed as normal
       return true;
+
     } catch (error) {
       console.error("Error logging in:", error.message);
+      
+      // Pass our custom verification error message directly
+      if (error.message.includes('Your email is not verified')) {
+        throw error;
+      }
+
       let errorMessage = 'Login failed. Please try again.';
       if (error.code === 'auth/invalid-email' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
         errorMessage = 'Incorrect email or password.';
       } else if (error.code === 'auth/too-many-requests') {
         errorMessage = 'Too many failed login attempts. Please try again later.';
+      }
+      throw new Error(errorMessage);
+    }
+  };
+  
+  // Function to send a password reset email
+  const sendPasswordReset = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      return true;
+    } catch (error) {
+      console.error("Error sending password reset email:", error.message);
+      let errorMessage = 'Failed to send password reset email. Please try again.';
+      if (error.code === 'auth/user-not-found') {
+        errorMessage = 'No user found with this email address.';
       }
       throw new Error(errorMessage);
     }
@@ -109,7 +146,8 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
+      // Only proceed with user setup if their email is verified
+      if (user && user.emailVerified) {
         const userDocRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(userDocRef);
 
@@ -120,11 +158,7 @@ export function AuthProvider({ children }) {
           setIsAdmin(profileData.role === 'admin');
 
           const currentPath = window.location.pathname;
-
-          const authOnlyPaths = ['/login', '/signup'];
-          // MODIFIED: /register-aurora is no longer a 'protectedUserPath' here
-          // as it's the target for logged-in but not Aurora-registered users.
-          const protectedUserPaths = ['/dashboard']; 
+          const authOnlyPaths = ['/login', '/signup', '/forgot-password'];
           const protectedAdminPaths = ['/admin-dashboard'];
 
           if (profileData.role === 'admin') {
@@ -135,42 +169,23 @@ export function AuthProvider({ children }) {
             if (authOnlyPaths.includes(currentPath)) {
               navigate('/dashboard');
             }
-            // MODIFIED: This specific redirection logic for other protectedUserPaths is removed
-            // because /register-aurora is now the intended destination for non-Aurora registered users.
-            // If you have other paths like /settings that ONLY logged-in users should access
-            // and should redirect to dashboard if visited, you'd need a more nuanced check.
-            // For now, only /dashboard implies a direct navigation if on an auth page.
-            
-            // If the user is logged in and tries to go to a path that's meant for authenticated users
-            // but isn't the dashboard or register-aurora, you might want to redirect.
-            // Example if you had other 'protectedUserPaths' besides '/dashboard':
-            // if (protectedUserPaths.includes(currentPath) && currentPath !== '/dashboard' && currentPath !== '/register-aurora') {
-            //   navigate('/dashboard');
-            // }
-            // For now, let's keep it simple: if they are on an auth page, go to dashboard.
-            // All other non-auth pages (like /, /events, /register-aurora) are fine.
           }
 
         } else {
           // User authenticated but no profile: this is an edge case, log them out.
-          setCurrentUser(user);
-          setUserProfile(null);
-          setIsAdmin(false);
           console.warn("User profile not found for UID:", user.uid);
           await signOut(auth);
-          navigate('/login'); // Redirect to login
+          navigate('/login');
         }
       } else {
-        // User is logged out
+        // User is logged out OR email is not verified
         setCurrentUser(null);
         setUserProfile(null);
         setIsAdmin(false);
 
-        // Define all paths that require ANY login (user or admin)
-        // /register-aurora still requires being logged in to access it.
         const allProtectedPaths = ['/dashboard', '/admin-dashboard', '/register-aurora'];
         if (allProtectedPaths.includes(window.location.pathname)) {
-            navigate('/login'); // Redirect to login if on any protected route while logged out
+            navigate('/login'); 
         }
       }
       setLoading(false);
@@ -187,12 +202,13 @@ export function AuthProvider({ children }) {
     register,
     login,
     logout,
-    updateUserProfile
+    updateUserProfile,
+    sendPasswordReset
   };
 
   return (
     <AuthContext.Provider value={value}>
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 }
