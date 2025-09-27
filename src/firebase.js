@@ -5,7 +5,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  sendEmailVerification,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -60,7 +62,9 @@ export {
   arrayRemove,
   query,
   where,
-  getDocs,           // Export getDocs
-  addDoc,            // Export addDoc
-  serverTimestamp    // Export serverTimestamp
+  getDocs,           
+  addDoc,        
+  serverTimestamp,
+  sendEmailVerification,
+  sendPasswordResetEmail,    
 };

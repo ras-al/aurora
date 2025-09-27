@@ -8,10 +8,11 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import AuroraRegistrationPage from './pages/AuroraRegistrationPage';
 import UserDashboardPage from './pages/UserDashboardPage';
-import AdminDashboardPage from './pages/AdminDashboardPage'; // Make sure this is imported
+import AdminDashboardPage from './pages/AdminDashboardPage';
+import ScoreboardPage from './pages/ScoreboardPage';
 
 // Import your common components
-import Header from './components/Header'; // Ensure Header is imported
+import Header from './components/Header';
 import Footer from './components/Footer';
 
 // Import AuthProvider and useAuth from your context
@@ -146,6 +147,9 @@ function AppContent() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
+            
+            {/* --- NEW: Route for the scoreboard --- */}
+            <Route path="/scoreboard" element={<ScoreboardPage />} />
 
             {/* Protected Route for Aurora Registration - requires login */}
             <Route
