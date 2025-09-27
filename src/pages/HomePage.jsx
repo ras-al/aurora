@@ -345,7 +345,7 @@ shaped
       <section id="contact" className="contact-section container common-section">
         <h2>Contact Us</h2>
         <p>Have questions? Reach out to us!</p>
-        <p>Email: <a href="mailto:info@aurora.com">info@aurora.com</a></p>
+        <p>Email: <a href="mailto:ieeewebtkm@gmail.com">ieeewebtkm@gmail.com</a></p>
         <p>Phone: +91-96565 85696</p>
       </section>
     </main>

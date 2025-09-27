@@ -1,0 +1,26 @@
+/* src/styles/ComingSoonPage.css */
+.coming-soon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 80vh;
+}
+
+.coming-soon-content {
+  background-color: var(--card-background);
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.coming-soon-content h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.coming-soon-content p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  color: var(--text-color);
+}

@@ -8,7 +8,15 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import AuroraRegistrationPage from './pages/AuroraRegistrationPage';
 import UserDashboardPage from './pages/UserDashboardPage';
-import AdminDashboardPage from './pages/AdminDashboardPage'; // Make sure this is imported
+import AdminDashboardPage from './pages/AdminDashboardPage'; 
+import TermsOfServicePage from './pages/TermsOfServicePage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import ContactPage from './pages/ContactPage';
+import AboutUsPage from './pages/AboutUsPage';
+import PricingPage from './pages/PricingPage';
+import CancellationPolicyPage from './pages/CancellationPolicyPage';
+import ComingSoonPage from './pages/ComingSoonPage';
+
 
 // Import your common components
 import Header from './components/Header'; // Ensure Header is imported
@@ -146,12 +154,16 @@ function AppContent() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
+            <Route path="/terms" element={<TermsOfServicePage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/about" element={<AboutUsPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/cancellation-policy" element={<CancellationPolicyPage />} />
+            <Route path="/register-aurora" element={<ComingSoonPage />} />
+            {/*<Route path="/register-aurora" element={currentUser ? <AuroraRegistrationPage /> : <Navigate to="/login" replace />}/>*/}
 
-            {/* Protected Route for Aurora Registration - requires login */}
-            <Route
-              path="/register-aurora"
-              element={currentUser ? <AuroraRegistrationPage /> : <Navigate to="/login" replace />}
-            />
+
 
             {/* Protected Route for User Dashboard - requires login */}
             <Route
