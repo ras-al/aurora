@@ -61,28 +61,39 @@ export function AuthProvider({ children }) {
     }
   };
 
-  // MODIFIED LOGIN FUNCTION TO ENFORCE EMAIL VERIFICATION
+  // MODIFIED LOGIN FUNCTION TO BYPASS VERIFICATION FOR ADMINS
   const login = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      if (!user.emailVerified) {
-        // Resend verification email for user convenience
-        await sendEmailVerification(user);
-        // Sign the unverified user out immediately
-        await signOut(auth);
-        // Throw a specific error to display on the login page
-        throw new Error('Your email is not verified. A new verification email has been sent. Please check your inbox.');
+      // Fetch user profile from Firestore to check their role
+      const userDocRef = doc(db, 'users', user.uid);
+      const docSnap = await getDoc(userDocRef);
+
+      if (docSnap.exists()) {
+        const userProfile = docSnap.data();
+        // Bypass verification check ONLY if the user is an admin
+        if (userProfile.role !== 'admin' && !user.emailVerified) {
+          await sendEmailVerification(user);
+          await signOut(auth);
+          throw new Error('Your email is not verified. A new verification email has been sent. Please check your inbox.');
+        }
+      } else {
+        // Fallback for edge case where user is in Auth but not Firestore
+        if (!user.emailVerified) {
+            await sendEmailVerification(user);
+            await signOut(auth);
+            throw new Error('Your email is not verified. A new verification email has been sent to your inbox.');
+        }
+        console.warn("User profile not found in Firestore for UID:", user.uid);
       }
       
-      // If email is verified, proceed as normal
       return true;
 
     } catch (error) {
       console.error("Error logging in:", error.message);
       
-      // Pass our custom verification error message directly
       if (error.message.includes('Your email is not verified')) {
         throw error;
       }
@@ -144,48 +155,53 @@ export function AuthProvider({ children }) {
   };
 
 
+  // MODIFIED USEEFFECT TO KEEP UNVERIFIED ADMINS LOGGED IN
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      // Only proceed with user setup if their email is verified
-      if (user && user.emailVerified) {
+      if (user) {
         const userDocRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(userDocRef);
 
         if (docSnap.exists()) {
           const profileData = docSnap.data();
-          setCurrentUser(user);
-          setUserProfile(profileData);
-          setIsAdmin(profileData.role === 'admin');
+          const isAdminUser = profileData.role === 'admin';
 
-          const currentPath = window.location.pathname;
-          const authOnlyPaths = ['/login', '/signup', '/forgot-password'];
-          const protectedAdminPaths = ['/admin-dashboard'];
+          // Condition to proceed: Email must be verified OR the user must be an admin
+          if (user.emailVerified || isAdminUser) {
+            setCurrentUser(user);
+            setUserProfile(profileData);
+            setIsAdmin(isAdminUser);
 
-          if (profileData.role === 'admin') {
-            if (authOnlyPaths.includes(currentPath) || !protectedAdminPaths.includes(currentPath)) {
-              navigate('/admin-dashboard');
+            // Navigation logic after successful login
+            const currentPath = window.location.pathname;
+            const authOnlyPaths = ['/login', '/signup', '/forgot-password'];
+            if (isAdminUser) {
+              if (authOnlyPaths.includes(currentPath)) navigate('/admin-dashboard');
+            } else {
+              if (authOnlyPaths.includes(currentPath)) navigate('/dashboard');
             }
-          } else { // Regular user
-            if (authOnlyPaths.includes(currentPath)) {
-              navigate('/dashboard');
-            }
+          } else {
+            // This case is now for regular users who are not verified.
+            // They will be treated as logged out.
+            setCurrentUser(null);
+            setUserProfile(null);
+            setIsAdmin(false);
           }
-
         } else {
-          // User authenticated but no profile: this is an edge case, log them out.
+          // User authenticated but no profile in Firestore, log them out.
           console.warn("User profile not found for UID:", user.uid);
           await signOut(auth);
           navigate('/login');
         }
       } else {
-        // User is logged out OR email is not verified
+        // User is logged out
         setCurrentUser(null);
         setUserProfile(null);
         setIsAdmin(false);
 
         const allProtectedPaths = ['/dashboard', '/admin-dashboard', '/register-aurora'];
         if (allProtectedPaths.includes(window.location.pathname)) {
-            navigate('/login'); 
+          navigate('/login'); 
         }
       }
       setLoading(false);
