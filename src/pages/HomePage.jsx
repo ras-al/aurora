@@ -248,13 +248,13 @@ shaped
           <div className="schedule-day">
             <h3>Day 2: October 18, 2025</h3>
             <ul>
-              <li><strong>09:00 AM - 12:30 PM</strong> Built a Bot</li>
+              <li><strong>09:00 AM - 12:30 PM</strong> Build a Bot</li>
               <li><strong>09:00 AM - 12:30 PM</strong> Cloud Workshop</li>
               <li><strong>09:00 AM - 12:30 PM</strong> Cadence Workshop</li>
               <li><strong>09:00 AM - 12:30 PM</strong> Volt Craft</li>
               <li><strong>09:00 AM - 12:30 PM</strong> OHM Sweet OHM</li>
               <li><strong>12:30 PM - 01:30 PM</strong> Lunch Break</li>
-              <li><strong>01:30 PM - 04:30 PM</strong> Built a Bot</li>
+              <li><strong>01:30 PM - 04:30 PM</strong> Build a Bot</li>
               <li><strong>01:30 PM - 04:30 PM</strong> Cloud Workshop</li>
               <li><strong>01:30 PM - 04:30 PM</strong> Cadence Workshop</li>
               <li><strong>01:30 PM - 04:30 PM</strong> OHM Sweet OHM</li>
