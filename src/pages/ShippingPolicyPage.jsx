@@ -1,4 +1,3 @@
-// src/pages/ShippingPolicyPage.jsx
 import React from 'react';
 import '../styles/LegalPages.css';
 

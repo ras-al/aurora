@@ -158,17 +158,17 @@ function AppContent() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/termsCondition" element={<TermsOfServicePage />} />
-            <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutUsPage />} />
-            <Route path="/shipping" element={<ShippingPolicyPage />} />
-            <Route path="/pricing" element={<PricingPage />} />
-            <Route path="/cancellation-and-refund-policy" element={<CancellationPolicyPage />}/>
             <Route path="/register-aurora" element={<ComingSoonPage />} />
             {/*<Route path="/register-aurora" element={currentUser ? <AuroraRegistrationPage /> : <Navigate to="/login" replace />}/>*/}
             <Route path="/scoreboard" element={<ScoreboardPage />} />
-
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-and-conditions" element={<TermsOfServicePage />} />
+            <Route path="/cancellation-and-refund-policy" element={<CancellationPolicyPage />} />
+            <Route path="/shipping-and-delivery-policy" element={<ShippingPolicyPage />} /> {/* <-- Add new route */}
+            
+            <Route path="/pricing" element={<PricingPage />} />
 
 
             {/* Protected Route for User Dashboard - requires login */}
