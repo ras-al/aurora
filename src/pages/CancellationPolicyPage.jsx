@@ -5,7 +5,7 @@ import '../styles/LegalPages.css';
 function CancellationPolicyPage() {
   return (
     <main className="legal-page-container container page-fade-in">
-      <h2>Cancellation & Refund Policy</h2>
+      <h2>Cancellation & Refunds</h2>
       <div className="legal-content">
         <p><strong>Last Updated: September 27, 2025</strong></p>
         

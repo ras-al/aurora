@@ -6,7 +6,7 @@ import '../styles/PricingPage.css';
 function PricingPage() {
   return (
     <main className="pricing-page-container container page-fade-in">
-      <h2>Registration Fees</h2>
+      <h2>Shipping</h2>
       <p className="pricing-intro">
         Your Aurora '25 pass grants you access to the entire three-day flagship event, including all expert talks, panel discussions, and cultural nights. Specific workshops and competitions may have separate registration steps after you've secured your main pass.
       </p>
