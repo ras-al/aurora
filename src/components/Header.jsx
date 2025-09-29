@@ -63,28 +63,8 @@ function Header() {
             <li><a href="/#accommodation" onClick={() => handleInternalLinkClick('#accommodation')}>Accommodation</a></li>
             <li><a href="/#location" onClick={() => handleInternalLinkClick('#location')}>Location</a></li>
             <li>
-              <NavLink to="/about" onClick={closeMenu}>
-                About Us
-              </NavLink>
-            </li>
-            <li>
               <NavLink to="/contact" onClick={closeMenu}>
                 Contact
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/pricing" onClick={closeMenu}>
-                Pricing
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/terms" onClick={closeMenu}>
-                Terms & Condition
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/cancellation-policy" onClick={closeMenu}>
-                Cancellation/Refund Policy
               </NavLink>
             </li>
             {/*<li><NavLink to="/scoreboard">Scoreboard</NavLink></li>*/}
