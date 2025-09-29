@@ -16,6 +16,7 @@ import ContactPage from './pages/ContactPage';
 import AboutUsPage from './pages/AboutUsPage';
 import PricingPage from './pages/PricingPage';
 import CancellationPolicyPage from './pages/CancellationPolicyPage';
+import ShippingPolicyPage from './pages/ShippingPolicyPage';
 import ComingSoonPage from './pages/ComingSoonPage';
 import ScoreboardPage from './pages/ScoreboardPage';
 
@@ -161,8 +162,9 @@ function AppContent() {
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutUsPage />} />
-            <Route path="/shipping" element={<PricingPage />} />
-            <Route path="/cancellationRefund" element={<CancellationPolicyPage />} />
+            <Route path="/shipping" element={<ShippingPolicyPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/cancellation-and-refund-policy" element={<CancellationPolicyPage />}/>
             <Route path="/register-aurora" element={<ComingSoonPage />} />
             {/*<Route path="/register-aurora" element={currentUser ? <AuroraRegistrationPage /> : <Navigate to="/login" replace />}/>*/}
             <Route path="/scoreboard" element={<ScoreboardPage />} />
