@@ -163,8 +163,8 @@ function AppContent() {
             <Route path="/register-aurora" element={<ComingSoonPage />} />
             {/*<Route path="/register-aurora" element={currentUser ? <AuroraRegistrationPage /> : <Navigate to="/login" replace />}/>*/}
             <Route path="/scoreboard" element={<ScoreboardPage />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms-and-conditions" element={<TermsOfServicePage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/termsCondition" element={<TermsOfServicePage />} />
             <Route path="/cancellation-and-refund-policy" element={<CancellationPolicyPage />} />
             <Route path="/shipping-and-delivery-policy" element={<ShippingPolicyPage />} /> {/* <-- Add new route */}
             

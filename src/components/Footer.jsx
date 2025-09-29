@@ -10,8 +10,8 @@ function Footer() {
           <Link to="/about">About Us</Link>
           <Link to="/contact">Contact</Link>
           <Link to="/pricing">Pricing</Link>
-          <Link to="/privacy-policy">Privacy Policy</Link>
-          <Link to="/terms-and-conditions">Terms & Conditions</Link>
+          <Link to="/privacy">Privacy Policy</Link>
+          <Link to="/termsCondition">Terms & Conditions</Link>
           <Link to="/cancellation-and-refund-policy">Cancellation/Refund</Link>
           <Link to="/shipping-and-delivery-policy">Shipping/Delivery</Link>
         </div>
