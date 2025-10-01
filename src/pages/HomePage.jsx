@@ -55,23 +55,23 @@ function HomePage() {
     return acc;
   }, {});
 
-  const handleRegisterForEvent = async (eventId, eventName) => {
+ /* const handleRegisterForEvent = async (eventId, eventName) => {
     if (!currentUser) {
       alert('Please log in to register for events.');
       navigate('/login');
       return;
-    }
-
-    if (!userProfile?.auroraTicketId) {
+    } 
+*/
+    /* if (!userProfile?.auroraTicketId) {
       alert('You must register for Aurora 2025 first to join individual events.');
       navigate('/register-aurora');
       return;
-    }
+    } */
 
-    if (userProfile.registeredEvents && userProfile.registeredEvents.includes(eventId)) {
+    /* if (userProfile.registeredEvents && userProfile.registeredEvents.includes(eventId)) {
         alert('You are already registered for this event.');
         return;
-    }
+    } */
 
     try {
       const userDocRef = doc(db, 'users', currentUser.uid);
@@ -91,7 +91,7 @@ function HomePage() {
     }
   };
 
-  const handleClickBehavior = (event) => {
+ /* const handleClickBehavior = (event) => {
     if (!currentUser) {
         alert('Please log in to register for events.');
         navigate('/login');
@@ -100,7 +100,7 @@ function HomePage() {
         navigate('/register-aurora');
     }
   };
-
+*/
   const formatDate = (date) => {
     if (!date) return 'TBA';
     const d = date instanceof Date ? date : new Date(date);
@@ -124,13 +124,13 @@ function HomePage() {
         <div className="hero-content container">
           <h1 className="animate-hero-text">AURORA'25 : Ignite Your Future!</h1>
           <p className="subtitle animate-hero-text delay-1">Join us for an unforgettable experience of innovation, learning, and connection.</p>
-          <Link to="/register-aurora" className="register-button animate-hero-button delay-2">
+          <Link to="https://app.makemypass.com/event/aurora-2025" className="register-button animate-hero-button delay-2">
             Register for Aurora Now!
           </Link>
           <div className="countdown-container">
             <p className="event-begins-in">event begins in</p>
             <CountdownTimer targetDate="2025-10-17T16:30:00" />
-            <p className="event-dates">Oct 17, 18, 19 2025</p>
+            <p className="event-dates">17, 18, 19 Oct 2025</p>
           </div>
         </div>
         {/* Scroll Down Indicator */}
