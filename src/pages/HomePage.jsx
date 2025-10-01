@@ -55,7 +55,9 @@ function HomePage() {
     return acc;
   }, {});
 
- /* const handleRegisterForEvent = async (eventId, eventName) => {
+  const handleRegisterForEvent = () => {};
+
+ /* const handleRegisterForEvent = (eventId, eventName) => {
     if (!currentUser) {
       alert('Please log in to register for events.');
       navigate('/login');
@@ -79,7 +81,7 @@ function HomePage() {
       }); 
       
       // Update local userProfile state immediately by re-fetching
-      await updateUserProfile(currentUser.uid, {});
+      await updateUserProfile(currentUser.uid, {});handleRegisterForEvent 
 
 
       alert(`Successfully registered for ${eventName}!`);
@@ -100,6 +102,8 @@ function HomePage() {
     }
   };
 */
+const handleClickBehavior = () => {};
+  
   const formatDate = (date) => {
     if (!date) return 'TBA';
     const d = date instanceof Date ? date : new Date(date);
