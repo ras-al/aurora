@@ -61,23 +61,22 @@ function HomePage() {
       navigate('/login');
       return;
     } 
-*/
-    /* if (!userProfile?.auroraTicketId) {
+     if (!userProfile?.auroraTicketId) {
       alert('You must register for Aurora 2025 first to join individual events.');
       navigate('/register-aurora');
       return;
-    } */
+    } 
 
-    /* if (userProfile.registeredEvents && userProfile.registeredEvents.includes(eventId)) {
+     if (userProfile.registeredEvents && userProfile.registeredEvents.includes(eventId)) {
         alert('You are already registered for this event.');
         return;
-    } */
+    } 
 
     try {
       const userDocRef = doc(db, 'users', currentUser.uid);
       await updateDoc(userDocRef, {
         registeredEvents: arrayUnion(eventId)
-      });
+      }); 
       
       // Update local userProfile state immediately by re-fetching
       await updateUserProfile(currentUser.uid, {});
@@ -89,7 +88,7 @@ function HomePage() {
       console.error("Error registering for event:", error);
       alert('An error occurred during event registration.');
     }
-  };
+  }; */
 
  /* const handleClickBehavior = (event) => {
     if (!currentUser) {
