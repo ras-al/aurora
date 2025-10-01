@@ -83,10 +83,10 @@ function Header() {
                 </NavLink>
               </li>
             )}
-            {!currentUser ? (
+            {/* !currentUser ? (
               <>
                 <li>
-                  <NavLink to="/login" onClick={closeMenu}>
+                <NavLink to="/login" onClick={closeMenu}>
                     Login
                   </NavLink>
                 </li>
@@ -102,7 +102,7 @@ function Header() {
                   Logout
                 </button>
               </li>
-            )}
+            ) */}
           </ul>
         </nav>
         <div className="menu-toggle" onClick={toggleMenu}>
