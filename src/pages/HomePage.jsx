@@ -50,7 +50,9 @@ function HomePage() {
     window.location.href = 'https://app.makemypass.com/event/aurora-2025?utm_medium=website';
   };
 
- 
+  const handleRegisterForEvent = (lLSkThj6WAYgc4Rn1RMs, Motovate) => {
+    window.location.href = 'https://app.makemypass.com/event/motovate?utm_medium=website';
+  };
 
   const formatDate = (date) => {
     if (!date) return 'TBA';
