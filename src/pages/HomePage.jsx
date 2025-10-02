@@ -47,7 +47,7 @@ function HomePage() {
   }, []);
 
   const handleRegisterForEvent = () => {
-    window.location.href = 'https://app.makemypass.com/event/aurora-2025';
+    window.location.href = 'https://app.makemypass.com/event/aurora-2025?utm_medium=website';
   };
 
   const formatDate = (date) => {
@@ -76,7 +76,7 @@ function HomePage() {
         <div className="hero-content container">
           <h1 className="animate-hero-text">AURORA'25 : Ignite Your Future!</h1>
           <p className="subtitle animate-hero-text delay-1">Join us for an unforgettable experience of innovation, learning, and connection.</p>
-          <Link to="https://app.makemypass.com/event/aurora-2025" className="register-button animate-hero-button delay-2">
+          <Link to="https://app.makemypass.com/event/aurora-2025?utm_medium=website" className="register-button animate-hero-button delay-2">
             Register for Aurora Now!
           </Link>
           <div className="countdown-container">
