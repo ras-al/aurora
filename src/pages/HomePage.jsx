@@ -50,6 +50,10 @@ function HomePage() {
     window.location.href = 'https://app.makemypass.com/event/aurora-2025?utm_medium=website';
   };
 
+  const handleRegisterForEvent = (eventId, eventName) => {
+    window.location.href = 'https://app.makemypass.com/event/motovate?utm_medium=website';
+  };
+
   const formatDate = (date) => {
     if (!date) return 'TBA';
     const d = date instanceof Date ? date : new Date(date);
@@ -133,7 +137,7 @@ shaped
                     <div className="event-card-content">
                       <h4>{event.name}</h4>
                       <p>Date: {formatDate(event.date)}</p>
-                      <p>Location: {event.location || 'Online'}</p>
+                      <!-- <p>Location: {event.location || 'Online'}</p --> 
                       <p>{event.description}</p>
                     </div>
                     <div className="action-area">
