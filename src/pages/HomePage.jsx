@@ -135,9 +135,10 @@ shaped
                         <img src={event.image} alt={event.name} className="event-card-image" />
                     )}
                     <div className="event-card-content">
+                      <h4>{event.id}</h4>
                       <h4>{event.name}</h4>
                       <p>Date: {formatDate(event.date)}</p>
-                      <!-- <p>Location: {event.location || 'Online'}</p --> 
+                      {/* <p>Location: {event.location || 'Online'}</p>  */} 
                       <p>{event.description}</p>
                     </div>
                     <div className="action-area">
