@@ -46,66 +46,10 @@ function HomePage() {
     fetchEvents();
   }, []);
 
-  const groupedEvents = events.reduce((acc, event) => {
-    if (event.isCanceled) return acc;
-    if (!acc[event.type]) {
-      acc[event.type] = [];
-    }
-    acc[event.type].push(event);
-    return acc;
-  }, {});
-
   const handleRegisterForEvent = () => {
     window.location.href = 'https://app.makemypass.com/event/aurora-2025';
   };
 
- /* const handleRegisterForEvent = (eventId, eventName) => {
-    if (!currentUser) {
-      alert('Please log in to register for events.');
-      navigate('/login');
-      return;
-    } 
-     if (!userProfile?.auroraTicketId) {
-      alert('You must register for Aurora 2025 first to join individual events.');
-      navigate('/register-aurora');
-      return;
-    } 
-
-     if (userProfile.registeredEvents && userProfile.registeredEvents.includes(eventId)) {
-        alert('You are already registered for this event.');
-        return;
-    } 
-
-    try {
-      const userDocRef = doc(db, 'users', currentUser.uid);
-      await updateDoc(userDocRef, {
-        registeredEvents: arrayUnion(eventId)
-      }); 
-      
-      // Update local userProfile state immediately by re-fetching
-      await updateUserProfile(currentUser.uid, {});handleRegisterForEvent 
-
-
-      alert(`Successfully registered for ${eventName}!`);
-
-    } catch (error) {
-      console.error("Error registering for event:", error);
-      alert('An error occurred during event registration.');
-    }
-  }; */
-
- /* const handleClickBehavior = (event) => {
-    if (!currentUser) {
-        alert('Please log in to register for events.');
-        navigate('/login');
-    } else if (!userProfile?.auroraTicketId) {
-        alert('You must register for Aurora 2025 first to join individual events.');
-        navigate('/register-aurora');
-    }
-  };
-*/
-const handleClickBehavior = () => {};
-  
   const formatDate = (date) => {
     if (!date) return 'TBA';
     const d = date instanceof Date ? date : new Date(date);
@@ -119,8 +63,11 @@ const handleClickBehavior = () => {};
     });
   };
 
+  // Get all active events for the scrolling container
   const allActiveEvents = events.filter(event => !event.isCanceled);
-  const isSingleEvent = allActiveEvents.length === 1;
+
+  // Duplicate the events array for a seamless scrolling animation
+  const duplicatedEvents = [...allActiveEvents, ...allActiveEvents];
 
   return (
     <main className="homepage page-fade-in">
@@ -159,66 +106,55 @@ with emerging technologies is gained, and innovation is celebrated.
 Aurora celebrates innovation while connecting participants with industry leaders and emerging
 technologies. Step into Aurora 2025—an unforgettable journey where ideas come alive and the future is
 shaped
-
         </p>
         <a href="https://drive.google.com/file/d/1hnwrOU52K0eyb9IyAjlLs75swZ_spn3g/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="download-brochure-button">
           Download Brochure
         </a>
       </section>
 
-      {/* Events Section - Categorized Display */}
+      {/* Events Section - HORIZONTAL SCROLLING DISPLAY */}
       <section id="events" className="events-section container common-section">
         <h2>Our Events</h2>
         {loadingEvents ? (
           <p className="loading-message">Loading events...</p>
         ) : errorEvents ? (
           <p className="error-message">{errorEvents}</p>
-        ) : Object.keys(groupedEvents).length > 0 ? (
-          Object.keys(groupedEvents).map(type => (
-            <div key={type} className="event-category-section">
-              <h3>{type} Events</h3>
-              <div className={`event-cards-grid ${isSingleEvent ? 'single-event-grid' : ''}`}>
-                {groupedEvents[type].map(event => {
-                  const hasAuroraTicket = userProfile?.auroraTicketId;
-                  const isRegisteredForThisEvent = userProfile?.registeredEvents?.includes(event.id);
-                  const isFull = event.limit > 0 && (event.participantCount || 0) >= event.limit;
-
-                  const canRegisterDirectly = currentUser && hasAuroraTicket && !isRegisteredForThisEvent;
-
-                  return (
-                    <div key={event.id} className="event-card">
-                      {event.image && (
-                            <img src={event.image} alt={event.name} className="event-card-image" />
+        ) : allActiveEvents.length > 0 ? (
+          <div className="scrolling-wrapper">
+            <div className="event-cards-grid">
+              {duplicatedEvents.map((event, index) => {
+                const isFull = event.limit > 0 && (event.participantCount || 0) >= event.limit;
+                
+                return (
+                  <div key={`${event.id}-${index}`} className="event-card">
+                    {event.image && (
+                        <img src={event.image} alt={event.name} className="event-card-image" />
                     )}
-                      <div className="event-card-content">
-                        <h4>{event.name}</h4>
-                        <p>Date: {formatDate(event.date)}</p>
-                        <p>Location: {event.location || 'Online'}</p>
-                        <p>{event.description}</p>
-                      </div>
-                      <div className="action-area">
-                        {event.isCanceled ? (
-                          <button className="register-event-button disabled-button" disabled>Canceled</button>
-                        ) : isFull ? (
-                          <button className="register-event-button disabled-button" disabled>Registration Full</button>
-                        ) : (
-                          // *** THIS IS THE FIX ***
-                          // This button now always uses the handleRegisterForEvent function,
-                          // ensuring it redirects correctly every time.
-                          <button
-                            className="register-event-button"
-                            onClick={handleRegisterForEvent}
-                          >
-                            Register for Event
-                          </button>
-                        )}
-                      </div>
+                    <div className="event-card-content">
+                      <h4>{event.name}</h4>
+                      <p>Date: {formatDate(event.date)}</p>
+                      <p>Location: {event.location || 'Online'}</p>
+                      <p>{event.description}</p>
                     </div>
-                  );
-                })}
-              </div>
+                    <div className="action-area">
+                      {event.isCanceled ? (
+                        <button className="register-event-button disabled-button" disabled>Canceled</button>
+                      ) : isFull ? (
+                        <button className="register-event-button disabled-button" disabled>Registration Full</button>
+                      ) : (
+                        <button
+                          className="register-event-button"
+                          onClick={handleRegisterForEvent}
+                        >
+                          Register for Event
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          ))
+          </div>
         ) : (
           <p>No events announced yet. Stay tuned for exciting updates!</p>
         )}
@@ -300,19 +236,30 @@ shaped
               These options offer more privacy and a range of amenities.
             </p>
             <p>
-              <strong>Contact:</strong> For assistance, please email <a href="mailto:accommodation@aurora.com">accommodation@aurora.com</a>
+              <strong>Contact:</strong> For assistance, please email <a href="mailto:ieeewebtkm@gmail.com">ieeewebtkm@gmail.com</a>
             </p>
           </div>
         </div>
         <br></br>
         <br />
-        <h3>Travel Information</h3>
-        <p>
-          Our campus is well-connected by public transport. Detailed directions from
-          major transit points (e.g., railway station, bus stand) will be updated shortly.
-          We encourage participants to use ride-sharing services or local public transport
-          for convenience.
-        </p>
+        <div className="travel-info">
+            <h3>Travel Information</h3>
+            <p>Our campus is well-connected. Here’s how you can reach TKM College of Engineering, Kollam:</p>
+            <div className="travel-options">
+                <div className="travel-option">
+                    <h4>By Air ✈️</h4>
+                    <p>The nearest airport is <strong>Trivandrum International Airport (TRV)</strong>, located approximately 70 km away. From the airport, you can hire a taxi or take a bus to reach Kollam.</p>
+                </div>
+                <div className="travel-option">
+                    <h4>By Train 🚆</h4>
+                    <p><strong>Kollam Junction (QLN)</strong> is a major railway station with excellent connectivity to major cities across India. The college is a short auto-rickshaw or taxi ride from the station.</p>
+                </div>
+                <div className="travel-option">
+                    <h4>By Bus 🚌</h4>
+                    <p>The KSRTC bus station in Kollam is well-connected to various cities within Kerala and neighboring states. Local buses, taxis, and auto-rickshaws are readily available to reach the campus.</p>
+                </div>
+            </div>
+        </div>
       </section>
 
       {/* Google Maps Section */}

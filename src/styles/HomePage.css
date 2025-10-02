@@ -216,19 +216,54 @@ section h2::after {
   border-radius: 1.5px;
 }
 
-.event-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  justify-content: center;
-  align-items: stretch;
+
+/* ===== NEW: Horizontal Scrolling Styles ===== */
+
+/* This wrapper hides the overflowing content */
+.scrolling-wrapper {
+  overflow: hidden;
+  width: 100%;
 }
 
+/* This grid now scrolls horizontally using an animation */
+.event-cards-grid {
+  display: flex; /* Aligns items in a row */
+  /* IMPORTANT: Calculate the total width needed.
+    (Card Width + Margin) * Number of Events * 2 (since we duplicated the array)
+    Example for 5 events: (300px + 30px) * 5 * 2 = 3300px
+  */
+  width: calc(330px * 10); /* ADJUST '10' to be (your number of events * 2) */
+  animation: scroll 40s linear infinite;
+}
+
+/* The animation that moves the cards */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* IMPORTANT: This moves the grid to the left by half its total width.
+      (Card Width + Margin) * Number of original events
+    */
+    transform: translateX(calc(-330px * 5)); /* ADJUST '5' to be your number of events */
+  }
+}
+
+/* Pauses the animation when the user hovers over the cards */
+.scrolling-wrapper:hover .event-cards-grid {
+  animation-play-state: paused;
+}
+
+/* ===== End of Horizontal Scrolling Styles ===== */
+
+
 .event-card {
+  width: 300px; /* Fixed width for each card */
+  margin-right: 30px; /* Gap between cards */
+  flex-shrink: 0; /* Prevents cards from shrinking */
   background-color: var(--card-background);
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-  padding: 0;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -478,7 +513,7 @@ section h2::after {
   .event-category-section h3 { font-size: 1.6em; }
 
   /* stack grids on small screens */
-  .event-cards-grid, .schedule-grid, .accommodation-details {
+  .schedule-grid, .accommodation-details {
     grid-template-columns: 1fr;
   }
 
