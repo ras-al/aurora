@@ -53,10 +53,14 @@ function UserDashboardPage() {
       const fetchedEvents = [];
 
       for (const eventId of registeredEventIds) {
-        const eventDocRef = doc(eventsCollectionRef, eventId);
-        const eventDocSnap = await getDoc(eventDocRef);
-        if (eventDocSnap.exists()) {
-          fetchedEvents.push({ id: eventDocSnap.id, ...eventDocSnap.data() });
+        // *** THIS IS THE FIX ***
+        // This check prevents the app from crashing if an empty eventId is in the user's registeredEvents array.
+        if (eventId) {
+          const eventDocRef = doc(eventsCollectionRef, eventId);
+          const eventDocSnap = await getDoc(eventDocRef);
+          if (eventDocSnap.exists()) {
+            fetchedEvents.push({ id: eventDocSnap.id, ...eventDocSnap.data() });
+          }
         }
       }
 
@@ -160,17 +164,17 @@ function UserDashboardPage() {
     // Handle Firestore Timestamps
     if (d.toDate) {
       d = d.toDate();
-    } 
+    }
     // Handle ISO 8601 strings from other sources or direct date inputs
     else if (typeof d === 'string') {
       d = new Date(d);
     }
-    
+
     // Check if the resulting date is valid
     if (isNaN(d.getTime())) {
         return 'Invalid Date';
     }
-    
+
     return d.toLocaleDateString('en-IN', {
       year: 'numeric',
       month: 'long',

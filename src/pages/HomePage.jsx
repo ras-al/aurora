@@ -55,7 +55,9 @@ function HomePage() {
     return acc;
   }, {});
 
-  const handleRegisterForEvent = () => {};
+  const handleRegisterForEvent = () => {
+    window.location.href = 'https://app.makemypass.com/event/aurora-2025';
+  };
 
  /* const handleRegisterForEvent = (eventId, eventName) => {
     if (!currentUser) {
@@ -196,33 +198,19 @@ shaped
                       </div>
                       <div className="action-area">
                         {event.isCanceled ? (
-                            <button className="register-event-button disabled-button" disabled>Canceled</button>
+                          <button className="register-event-button disabled-button" disabled>Canceled</button>
                         ) : isFull ? (
-                            <button className="register-event-button">Registration Full</button>
+                          <button className="register-event-button disabled-button" disabled>Registration Full</button>
                         ) : (
-                            canRegisterDirectly ? (
-                                <button
-                                    className="register-event-button"
-                                    onClick={() => handleRegisterForEvent(event.id, event.name)}
-                                >
-                                    Register for Event
-                                </button>
-                            ) : (
-                                <button
-                                    className="register-event-button"
-                                    disabled={isRegisteredForThisEvent}
-                                    onClick={isRegisteredForThisEvent ? null : handleClickBehavior}
-                                    title={
-                                        !currentUser
-                                            ? 'Log in to register for events'
-                                            : !hasAuroraTicket
-                                                ? 'Register for Aurora 2025 first'
-                                                : 'Already registered for this event'
-                                    }
-                                >
-                                    {isRegisteredForThisEvent ? 'Registered' : 'Register for Event'}
-                                </button>
-                            )
+                          // *** THIS IS THE FIX ***
+                          // This button now always uses the handleRegisterForEvent function,
+                          // ensuring it redirects correctly every time.
+                          <button
+                            className="register-event-button"
+                            onClick={handleRegisterForEvent}
+                          >
+                            Register for Event
+                          </button>
                         )}
                       </div>
                     </div>
