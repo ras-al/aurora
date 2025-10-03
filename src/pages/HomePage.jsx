@@ -13,7 +13,7 @@ function HomePage() {
   const { currentUser, userProfile, updateUserProfile } = useAuth();
   const navigate = useNavigate();
   const eventLinks = {
-  lLSkThj6WAYgc4Rn1RMs: 'https://app.makemypass.com/event/motovate'
+  lLSkThj6WAYgc4Rn1RMs: 'https://app.makemypass.com/event/motovate?utm_medium=website'
 };
 
   const fetchEvents = async () => {
