@@ -12,6 +12,9 @@ function HomePage() {
   const [errorEvents, setErrorEvents] = useState(null);
   const { currentUser, userProfile, updateUserProfile } = useAuth();
   const navigate = useNavigate();
+  const eventLinks = {
+  lLSkThj6WAYgc4Rn1RMs: 'https://app.makemypass.com/event/motovate'
+};
 
   const fetchEvents = async () => {
     try {
@@ -46,9 +49,11 @@ function HomePage() {
     fetchEvents();
   }, []);
 
-  const handleRegisterForEvent = () => {
-    window.location.href = 'https://app.makemypass.com/event/aurora-2025?utm_medium=website';
-  };
+  const handleRegisterForEvent = (eventId) => {
+  const specificLink = eventLinks[eventId];
+  const defaultLink = 'https://app.makemypass.com/event/aurora-2025?utm_medium=website';
+  window.location.href = specificLink || defaultLink;
+};
 
   const formatDate = (date) => {
     if (!date) return 'TBA';
@@ -144,7 +149,7 @@ shaped
                       ) : (
                         <button
                           className="register-event-button"
-                          onClick={handleRegisterForEvent}
+                          onClick={() => handleRegisterForEvent(event.id)}
                         >
                           Register for Event
                         </button>
