@@ -84,6 +84,7 @@ function HomePage() {
           <Link to="https://app.makemypass.com/event/aurora-2025?utm_medium=website" className="register-button animate-hero-button delay-2">
             Register for Aurora Now!
           </Link>
+          <br />
           <Link to="https://app.makemypass.com/event/motovate?utm_medium=website" className="register-button animate-hero-button delay-2">
             Register for Motovate!
           </Link>
