@@ -84,6 +84,9 @@ function HomePage() {
           <Link to="https://app.makemypass.com/event/aurora-2025?utm_medium=website" className="register-button animate-hero-button delay-2">
             Register for Aurora Now!
           </Link>
+          <Link to="https://app.makemypass.com/event/motovate?utm_medium=website" className="register-button animate-hero-button delay-2">
+            Register for Motovate!
+          </Link>
           <div className="countdown-container">
             <p className="event-begins-in">event begins in</p>
             <CountdownTimer targetDate="2025-10-17T16:30:00" />
