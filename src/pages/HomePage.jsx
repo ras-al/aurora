@@ -90,7 +90,7 @@ function HomePage() {
           </Link>
           <div className="countdown-container">
             <p className="event-begins-in">event begins in</p>
-            <CountdownTimer targetDate="2025-10-17T16:30:00" />
+            <CountdownTimer targetDate="2025-10-18T09:00:00" />
             <p className="event-dates">17, 18, 19 Oct 2025</p>
           </div>
         </div>
@@ -277,7 +277,9 @@ shaped
         <div className="map-container">
           <iframe
             title="Google Maps Location"
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3941.622293218647!2d76.6326382!3d8.9146612!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05fd3036020df5%3A0xc3c1007e5232dc27!2sTKM%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1756746190283!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?mid=1pmOiMDDfQcnCG9T4Gu20fUW-1KI4lKs&ehbc=2E312F&noprof=1"
+            {/* width="640" height="480" */}
+          
             width="100%"
             height="450"
             style={{ border: 0 }}
