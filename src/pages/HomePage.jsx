@@ -90,8 +90,8 @@ function HomePage() {
           </Link>
           <div className="countdown-container">
             <p className="event-begins-in">event begins in</p>
-            <CountdownTimer targetDate="2025-10-18T09:00:00" />
-            <p className="event-dates">17, 18, 19 Oct 2025</p>
+            <CountdownTimer targetDate="2025-10-18T08:30:00" />
+            <p className="event-dates">18, 19 Oct 2025</p>
           </div>
         </div>
         {/* Scroll Down Indicator */}
