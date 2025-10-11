@@ -175,30 +175,24 @@ shaped
         <p>Get ready for a power-packed few days! Here's a glimpse of what's happening:</p>
         <div className="schedule-grid">
           <div className="schedule-day">
-            <h3>Day 1: October 17, 2025</h3>
+            <h3>Day 1: October 18, 2025</h3>
             <ul>
-              <li><strong>04:30 PM - 05:30 PM :- APJ HALL</strong> Inauguration Ceremony</li>
-              <li><strong>05:30 PM - 06:30 PM :- APJ HALL</strong> Panel Discussion</li>
+              <li><strong>08:30 AM - 09:30 AM</strong> Inauguration Ceremony</li>
+              <li><strong>09:30 AM - 01:00 PM</strong> Build a Bot</li>
+              <li><strong>09:30 AM - 01:00 PM</strong> Cloud Workshop</li>
+              <li><strong>09:30 AM - 01:00 PM</strong> Cadence Workshop</li>
+              <li><strong>09:30 AM - 01:00 PM</strong> Volt Craft</li>
+              <li><strong>09:30 AM - 01:00 PM</strong> OHM Sweet OHM</li>
+              <li><strong>01:00 PM - 02:00 PM</strong> Lunch Break</li>
+              <li><strong>02:00 PM - 05:00 PM</strong> Build a Bot</li>
+              <li><strong>02:00 PM - 05:00 PM</strong> Cloud Workshop</li>
+              <li><strong>02:00 PM - 05:00 PM</strong> Cadence Workshop</li>
+              <li><strong>02:00 PM - 05:00 PM</strong> OHM Sweet OHM</li>
+              <li><strong>05:30 PM - 08:00 PM</strong> Culturals</li>
             </ul>
           </div>
           <div className="schedule-day">
-            <h3>Day 2: October 18, 2025</h3>
-            <ul>
-              <li><strong>09:00 AM - 12:30 PM</strong> Build a Bot</li>
-              <li><strong>09:00 AM - 12:30 PM</strong> Cloud Workshop</li>
-              <li><strong>09:00 AM - 12:30 PM</strong> Cadence Workshop</li>
-              <li><strong>09:00 AM - 12:30 PM</strong> Volt Craft</li>
-              <li><strong>09:00 AM - 12:30 PM</strong> OHM Sweet OHM</li>
-              <li><strong>12:30 PM - 01:30 PM</strong> Lunch Break</li>
-              <li><strong>01:30 PM - 04:30 PM</strong> Build a Bot</li>
-              <li><strong>01:30 PM - 04:30 PM</strong> Cloud Workshop</li>
-              <li><strong>01:30 PM - 04:30 PM</strong> Cadence Workshop</li>
-              <li><strong>01:30 PM - 04:30 PM</strong> OHM Sweet OHM</li>
-              <li><strong>05:30 PM - 08:30 PM</strong> Culturals</li>
-            </ul>
-          </div>
-          <div className="schedule-day">
-            <h3>Day 3: October 19, 2025</h3>
+            <h3>Day 2: October 19, 2025</h3>
             <ul>
               <li><strong>09:00 AM - 12:30 PM</strong> Electrifying Mobility</li>
               <li><strong>09:00 AM - 12:30 PM</strong> IOT Workshop</li>
@@ -208,7 +202,7 @@ shaped
               <li><strong>01:30 PM - 04:30 PM</strong> Electrifying Mobility</li>
               <li><strong>01:30 PM - 04:30 PM</strong> IOT Workshop</li>
               <li><strong>01:30 PM - 04:30 PM</strong> OHM Sweet OHM</li>
-              <li><strong>05:30 PM - 08:30 PM :- APJ Park</strong> Culturals</li>
+              <li><strong>02:00 PM - 04:30 PM</strong> EmpowerHER</li>
             </ul>
           </div>
         </div>
@@ -257,7 +251,7 @@ shaped
             <div className="travel-options">
                 <div className="travel-option">
                     <h4>By Air ✈️</h4>
-                    <p>Fly direct to <strong>Thiruvanthapuram (Trivandrum - TRV)</strong> airport which is the nearest airport or to <storng>Kochi (Cochin - COK)</storng> International Airport. TKMCE is about 66 kms from the Thiruvanathapuram Airport and about 170 kms from the Kochi Airport. One could take either a prepaid taxi from the counter available inside the Airport, or a city taxi (from just outside the airport building) to Karicode, Kollam.</p>
+                    <p>Fly direct to <strong>Thiruvanthapuram (Trivandrum - TRV)</strong> airport which is the nearest airport or to <strong>Kochi (Cochin - COK)</strong> International Airport. TKMCE is about 66 kms from the Thiruvanathapuram Airport and about 170 kms from the Kochi Airport. And take a taxi to Karicode, Kollam.</p>
                 </div>
                 <div className="travel-option">
                     <h4>By Train 🚆</h4>
