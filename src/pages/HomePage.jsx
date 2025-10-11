@@ -278,8 +278,6 @@ shaped
           <iframe
             title="Google Maps Location"
             src="https://www.google.com/maps/embed?mid=1pmOiMDDfQcnCG9T4Gu20fUW-1KI4lKs&ehbc=2E312F&noprof=1"
-            {/* width="640" height="480" */}
-          
             width="100%"
             height="450"
             style={{ border: 0 }}
