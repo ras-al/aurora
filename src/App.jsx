@@ -162,7 +162,7 @@ function AppContent() {
             <Route path="/about" element={<AboutUsPage />} />
             <Route path="/register-aurora" element={<ComingSoonPage />} />
             {/*<Route path="/register-aurora" element={currentUser ? <AuroraRegistrationPage /> : <Navigate to="/login" replace />}/>*/}
-            <Route path="/scoreboard" element={<ScoreboardPage />} />
+            <Route path="/leaderboard" element={<ScoreboardPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/termsCondition" element={<TermsOfServicePage />} />
             <Route path="/cancellation-and-refund-policy" element={<CancellationPolicyPage />} />
