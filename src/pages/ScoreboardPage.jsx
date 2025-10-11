@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { getFirestore, collection, getDocs } from 'firebase/firestore'; // No longer needed
 import { ambassadors } from '../data/ambassadors';
 import '../styles/ScoreboardPage.css';
 
@@ -11,15 +10,30 @@ function ScoreboardPage() {
     useEffect(() => {
         const calculateScores = async () => {
             try {
-                // --- FETCH DATA FROM MAKEMYPASS.COM ---
-                // Replace with the actual API endpoint from makemypass.com
+                // --- HARDCODED DATA START ---
+                // Manually added referral data since the MakeMyPass API key is unavailable.
+                const hardcodedReferrals = [
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011',
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011',
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011',
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011',
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011',
+                    //for now 12 Oct 03:00 am AUR011 34 nos. every other 0
+                    // Add more referral codes here to simulate data
+                ];
+                
+                // --- FETCH DATA FROM MAKEMYPASS.COM (COMMENTED OUT) ---
+                /* // Replace with the actual API endpoint from makemypass.com
                 const response = await fetch('https://api.makemypass.com/your-event/referrals');
                 const referralData = await response.json();
-
-                // --- PROCESS THE REFERRAL DATA ---
                 // This part depends on the structure of the data from makemypass.com
-                // For this example, we'll assume referralData is an array of referral codes: ['AUR011', 'AUR012', 'AUR011']
                 const referrals = referralData; // Adjust this based on the actual API response
+                */
+                // ----------------------------------------------------
+
+                // --- USE HARDCODED DATA FOR NOW ---
+                const referrals = hardcodedReferrals;
 
                 const referralCounts = referrals.reduce((acc, code) => {
                     const lowerCaseCode = code.toLowerCase();
@@ -51,8 +65,9 @@ function ScoreboardPage() {
                 setScoreboard(rankedScoreboard);
 
             } catch (err) {
-                setError('Failed to fetch or calculate scores. Please check your API endpoint and data format.');
-                console.error(err);
+                // Modified error message for local calculation failure
+                setError('Failed to calculate scores from available data.');
+                console.error("Error in calculateScores:", err);
             } finally {
                 setLoading(false);
             }
