@@ -257,15 +257,15 @@ shaped
             <div className="travel-options">
                 <div className="travel-option">
                     <h4>By Air ✈️</h4>
-                    <p>The nearest airport is <strong>Trivandrum International Airport (TRV)</strong>, located approximately 70 km away. From the airport, you can hire a taxi or take a bus to reach Kollam.</p>
+                    <p>Fly direct to <strong>Thiruvanthapuram (Trivandrum - TRV)</strong> airport which is the nearest airport or to <storng>Kochi (Cochin - COK)</storng> International Airport. TKMCE is about 66 kms from the Thiruvanathapuram Airport and about 170 kms from the Kochi Airport. One could take either a prepaid taxi from the counter available inside the Airport, or a city taxi (from just outside the airport building) to Karicode, Kollam.</p>
                 </div>
                 <div className="travel-option">
                     <h4>By Train 🚆</h4>
-                    <p><strong>Kollam Junction (QLN)</strong> is a major railway station with excellent connectivity to major cities across India. The college is a short auto-rickshaw or taxi ride from the station.</p>
+                    <p><strong>Kollam Junction (QLN)</strong> railway station is about 7 km from the TKMCE campus. One can also take a train to the nearest local train station <strong>Kilikkollur (KLQ)</strong> from where it is just 2 minutes by walk to the campus.</p>
                 </div>
                 <div className="travel-option">
                     <h4>By Bus 🚌</h4>
-                    <p>The KSRTC bus station in Kollam is well-connected to various cities within Kerala and neighboring states. Local buses, taxis, and auto-rickshaws are readily available to reach the campus.</p>
+                    <p>From the central Bus station at Kollam, catch any bus going to Kundara, Kottarakara, Punalur or Thenkasi and aboard at Karicode.</p>
                 </div>
             </div>
         </div>
