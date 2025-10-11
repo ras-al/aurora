@@ -13,6 +13,15 @@ export const ambassadors = [
   { name: "Sanjana S Nair", college: "GEC Barton Hill", id: "AUR022" },
   { name: "Sahala Mariyam P S", college: "Adi Shankara Institute of Engineering and Technology", id: "AUR023" },
   { name: "Abhinjose JM", college: "College of Engineering Karungappally", id: "AUR024" },
+  { name: "Krishna paliyath", college: "Government Engineering College Thrissur", id: "AUR025" },
+  { name: "Devika. U. M", college: "Government engineering college thrissur", id: "AUR026" },
+  { name: "Ajwa K", college: "Government Engineering College Thrissur", id: "AUR027" },
+  { name: "Jovin P John", college: "Albertian Institute of Science and Technology", id: "AUR028" },
+  { name: "Vandhana S", college: "SOE CUSAT", id: "AUR029" },
+  { name: "Subair", college: "TKMCE", id: "AUR030" },
+  { name: "Sooraj Krishna J", college: "TKM college of engineering Kollam", id: "AUR031" },
+  { name: "Aryananda Ashok", college: "Saintgits College of Engineering", id: "AUR032" },
+  { name: "Adhith P", college: "Devagiri", id: "AUR033" },
   // Add more ambassadors here if needed
 ];
 
