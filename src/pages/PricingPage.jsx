@@ -16,7 +16,7 @@ function PricingPage() {
           <p className="price">₹600</p>
           <p className="description">For current students of TKMCE who are also active IEEE members.</p>
           <ul>
-            <li>✔ Full 3-Day Access</li>
+            <li>✔ Full 2-Day Access</li>
             <li>✔ IEEE Member Exclusive</li>
             <li>✔ TKMCE Student Only</li>
           </ul>
@@ -26,7 +26,7 @@ function PricingPage() {
           <p className="price">₹650</p>
           <p className="description">For current students of TKMCE who are not IEEE members.</p>
           <ul>
-            <li>✔ Full 3-Day Access</li>
+            <li>✔ Full 2-Day Access</li>
             <li>✔ TKMCE Student Only</li>
           </ul>
         </div>
@@ -35,7 +35,7 @@ function PricingPage() {
           <p className="price">₹700</p>
           <p className="description">For active IEEE members from any institution other than TKMCE.</p>
           <ul>
-            <li>✔ Full 3-Day Access</li>
+            <li>✔ Full 2-Day Access</li>
             <li>✔ IEEE Member Exclusive</li>
           </ul>
         </div>
@@ -44,14 +44,14 @@ function PricingPage() {
           <p className="price">₹850</p>
           <p className="description">The standard rate for all participants who are not TKMCE students or IEEE members.</p>
           <ul>
-            <li>✔ Full 3-Day Access</li>
+            <li>✔ Full 2-Day Access</li>
             <li>✔ Open to All</li>
           </ul>
         </div>
       </div>
       <div className="registration-prompt">
         <p>Ready to ignite your future?</p>
-        <Link to="/register-aurora" className="button-link">Register Now</Link>
+        <Link to="https://app.makemypass.com/event/aurora-2025?utm_medium=website" className="button-link">Register Now</Link>
       </div>
     </main>
   );
