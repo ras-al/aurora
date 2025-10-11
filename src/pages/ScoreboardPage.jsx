@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+// import { getFirestore, collection, getDocs } from 'firebase/firestore'; // No longer needed
 import { ambassadors } from '../data/ambassadors';
 import '../styles/ScoreboardPage.css';
 
@@ -11,13 +11,15 @@ function ScoreboardPage() {
     useEffect(() => {
         const calculateScores = async () => {
             try {
-                const db = getFirestore();
-                const usersCollection = collection(db, 'users');
-                const userSnapshot = await getDocs(usersCollection);
+                // --- FETCH DATA FROM MAKEMYPASS.COM ---
+                // Replace with the actual API endpoint from makemypass.com
+                const response = await fetch('https://api.makemypass.com/your-event/referrals');
+                const referralData = await response.json();
 
-                const referrals = userSnapshot.docs
-                    .map(doc => doc.data().referralCode)
-                    .filter(code => code); 
+                // --- PROCESS THE REFERRAL DATA ---
+                // This part depends on the structure of the data from makemypass.com
+                // For this example, we'll assume referralData is an array of referral codes: ['AUR011', 'AUR012', 'AUR011']
+                const referrals = referralData; // Adjust this based on the actual API response
 
                 const referralCounts = referrals.reduce((acc, code) => {
                     const lowerCaseCode = code.toLowerCase();
@@ -49,7 +51,7 @@ function ScoreboardPage() {
                 setScoreboard(rankedScoreboard);
 
             } catch (err) {
-                setError('Failed to calculate scores. Please check your Firestore rules.');
+                setError('Failed to fetch or calculate scores. Please check your API endpoint and data format.');
                 console.error(err);
             } finally {
                 setLoading(false);
@@ -64,7 +66,7 @@ function ScoreboardPage() {
 
     return (
         <div className="scoreboard-container">
-            <h1>Ambassador Scoreboard</h1>
+            <h1>Campus Ambassadors Leaderboard</h1>
             <table className="scoreboard-table">
                 <thead>
                     <tr>
