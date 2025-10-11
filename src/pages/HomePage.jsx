@@ -275,17 +275,16 @@ shaped
       <section id="location" className="location-section container common-section">
         <h2>Find Us</h2>
         <div className="map-container">
-          <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1pmOiMDDfQcnCG9T4Gu20fUW-1KI4lKs&ehbc=2E312F&noprof=1" width="100%" height="480"></iframe>
-          {/*<iframe
+        <iframe
             title="Google Maps Location"
-            src="https://www.google.com/maps/embed?mid=1pmOiMDDfQcnCG9T4Gu20fUW-1KI4lKs&ehbc=2E312F&noprof=1"
+            src="https://www.google.com/maps/d/u/1/embed?mid=1pmOiMDDfQcnCG9T4Gu20fUW-1KI4lKs&ehbc=2E312F&noprof=1"
             width="100%"
-            height="450"
+            height="100%"
             style={{ border: 0 }}
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-          ></iframe> */}
+          ></iframe>
         </div>
       </section>
 
