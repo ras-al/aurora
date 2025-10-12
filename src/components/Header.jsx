@@ -67,7 +67,7 @@ function Header() {
                 Contact
               </NavLink>
             </li>
-            {/*<li><NavLink to="/scoreboard">Scoreboard</NavLink></li>*/}
+            <li><NavLink to="/leaderboard">Leaderboard</NavLink></li>
 
             {currentUser && !isAdmin && (
               <li>
