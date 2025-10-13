@@ -225,6 +225,7 @@ shaped
             <p>
               Limited on-campus hostel accommodation is available for registered participants
               on a first-come, first-served basis. Prior registration is mandatory.
+              Special reduced rates for AURORA participants will be charged!
               Facilities include shared rooms, common washrooms, and basic amenities.
             </p>
             <p>
