@@ -13,14 +13,17 @@ function ScoreboardPage() {
                 // --- HARDCODED DATA START ---
                 // Manually added referral data since the MakeMyPass API key is unavailable.
                 const hardcodedReferrals = [
-                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011',
-                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 
-                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011',
-                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011',
-                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011',
-                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011',
-                    'AUR011', 'AUR011',
-                    //for now 12 Oct 14:00 AUR011 38 nos. every other 0
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //1
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //2
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //3
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //4
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //5
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //6
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //7
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //8
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //9
+                    'AUR011', 
+                    //for now 16 Oct 18:15 AUR011 55 nos. every other 0
                     // Add more referral codes here to simulate data
                 ];
                 
