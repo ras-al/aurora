@@ -22,8 +22,8 @@ function ScoreboardPage() {
                     'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //7
                     'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //8
                     'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', 'AUR011', //9
-                    'AUR011', 
-                    //for now 16 Oct 18:15 AUR011 55 nos. every other 0
+                    'AUR011', 'AUR011', 'AUR011', 'AUR011',
+                    //for now 17 Oct 08:25 AUR011 55+3 motovate nos. every other 0
                     // Add more referral codes here to simulate data
                 ];
                 
