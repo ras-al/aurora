@@ -79,7 +79,7 @@ function HomePage() {
       {/* Hero Section */}
       <section id="hero" className="hero-section">
         <div className="hero-content container">
-          <h1 className="animate-hero-text">AURORA'25 : Ignite Your Future!</h1>
+          <h1 className="animate-hero-text">AURORA '25 : Ignite Your Future!</h1>
           <p className="subtitle animate-hero-text delay-1">Join us for an unforgettable experience of innovation, learning, and connection.</p>
           
           <button className="register-button animate-hero-button delay-2" disabled>
@@ -152,12 +152,7 @@ shaped
                       ) : isFull ? (
                         <button className="register-event-button disabled-button" disabled>Registration Full</button>
                       ) : (
-                        <button
-                          className="register-event-button"
-                          onClick={() => handleRegisterForEvent(event.id)}
-                        >
-                          Register for Event
-                        </button>
+                        <button className="register-event-button disabled-button" disabled>Registration Closed!</button>
                       )}
                     </div>
                   </div>
