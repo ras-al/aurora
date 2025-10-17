@@ -393,7 +393,7 @@ section h2::after {
 }
 
 .schedule-day li strong {
-  color: var(--secondary-color);
+  color: var(--primary-color);
   display: block;
   margin-bottom: 5px;
 }
