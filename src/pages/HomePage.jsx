@@ -173,32 +173,37 @@ shaped
           <div className="schedule-day">
             <h3>Day 1: October 18, 2025</h3>
             <ul>
+              <li><strong>08:00 AM</strong> Registration: <a href="https://www.google.com/maps/dir//8.9149014,76.6320905" target="_blank" rel="noopener noreferrer">Front Gate</a></li>
+              <li><strong>08:00 AM - 08:30 AM</strong> Breakfast: <a href="https://www.google.com/maps/dir//8.9138922,76.6322327" target="_blank" rel="noopener noreferrer">Auditorium</a></li>
               <li><strong>08:30 AM - 09:30 AM</strong> Inauguration Ceremony: <a href="https://www.google.com/maps/dir//8.9145782,76.6320864" target="_blank" rel="noopener noreferrer">APJ Hall</a></li>
               <li><strong>09:30 AM - 01:00 PM</strong> Build a Bot: <a href="https://www.google.com/maps/dir//8.9136823,76.63288399999999" target="_blank" rel="noopener noreferrer">IDEA Lab</a></li>
-              <li><strong>09:30 AM - 01:00 PM</strong> Cloud Workshop: <a href="https://www.google.com/maps/dir//8.9141509,76.6323699" target="_blank" rel="noopener noreferrer">System Software Lab</a></li>
+              <li><strong>10:00 AM - 01:00 PM</strong> Cloud Workshop: <a href="https://www.google.com/maps/dir//8.9141509,76.6323699" target="_blank" rel="noopener noreferrer">System Software Lab</a></li>
               <li><strong>09:30 AM - 01:00 PM</strong> Cadence Workshop: <a href="https://www.google.com/maps/dir//8.9136,76.631899" target="_blank" rel="noopener noreferrer">VLSI Lab</a></li>
-              <li><strong>09:30 AM - 01:00 PM</strong> Volt Craft: <a href="https://www.google.com/maps/dir//8.913692,76.631853" target="_blank" rel="noopener noreferrer">DSP Lab</a></li>
-              <li><strong>09:30 AM - 01:00 PM</strong> OHM Sweet OHM: <a href="https://www.google.com/maps/dir//8.9148459,76.6323383" target="_blank" rel="noopener noreferrer">Room 101 & 105</a></li>
-              <li><strong>01:00 PM - 02:00 PM</strong> Lunch Break: <a href="https://www.google.com/maps/dir//8.9132136,76.6317408" target="_blank" rel="noopener noreferrer">Mech Block</a></li>
+              <li><strong>09:30 AM - 01:00 PM</strong> OHM Sweet OHM: <a href="https://www.google.com/maps/dir//8.9148459,76.6323383" target="_blank" rel="noopener noreferrer">Room 105</a></li>
+              <li><strong>01:00 PM - 02:00 PM</strong> Lunch Break: <a href="https://www.google.com/maps/dir//8.9138922,76.6322327" target="_blank" rel="noopener noreferrer">Auditorium</a></li>
               <li><strong>02:00 PM - 05:00 PM</strong> Build a Bot: <a href="https://www.google.com/maps/dir//8.9136823,76.63288399999999" target="_blank" rel="noopener noreferrer">IDEA Lab</a></li>
+              <li><strong>02:00 PM - 05:00 PM</strong> Volt Craft: <a href="https://www.google.com/maps/dir//8.913692,76.631853" target="_blank" rel="noopener noreferrer">DSP Lab</a></li>
               <li><strong>02:00 PM - 05:00 PM</strong> Cloud Workshop: <a href="https://www.google.com/maps/dir//8.9141509,76.6323699" target="_blank" rel="noopener noreferrer">System Software Lab</a></li>
               <li><strong>02:00 PM - 05:00 PM</strong> Cadence Workshop: <a href="https://www.google.com/maps/dir//8.9136,76.631899" target="_blank" rel="noopener noreferrer">VLSI Lab</a></li>
-              <li><strong>02:00 PM - 05:00 PM</strong> OHM Sweet OHM: <a href="https://www.google.com/maps/dir//8.9148459,76.6323383" target="_blank" rel="noopener noreferrer">Room 101 & 105</a></li>
+              <li><strong>02:00 PM - 05:00 PM</strong> OHM Sweet OHM: <a href="https://www.google.com/maps/dir//8.9148459,76.6323383" target="_blank" rel="noopener noreferrer">Room 105</a></li>
               <li><strong>05:30 PM - 08:00 PM</strong> Culturals: <a href="https://www.google.com/maps/dir//8.9143816,76.6322686" target="_blank" rel="noopener noreferrer">Basketball Court</a></li>
+              <li><strong>08:00 PM - 08:30 PM</strong> Dinner: <a href="https://www.google.com/maps/dir//8.9138922,76.6322327" target="_blank" rel="noopener noreferrer">Auditorium</a></li>
             </ul>
           </div>
           <div className="schedule-day">
             <h3>Day 2: October 19, 2025</h3>
             <ul>
+              <li><strong>08:00 AM - 08:45 AM</strong> Breakfast: <a href="https://www.google.com/maps/dir//8.9138922,76.6322327" target="_blank" rel="noopener noreferrer">Auditorium</a></li>
               <li><strong>09:00 AM - 12:30 PM</strong> Electrifying Mobility: <a href="https://www.google.com/maps/dir//8.913692,76.631853" target="_blank" rel="noopener noreferrer">DSP Lab</a></li>
               <li><strong>09:00 AM - 12:30 PM</strong> IOT Workshop: <a href="https://www.google.com/maps/dir//8.9136976,76.6318338" target="_blank" rel="noopener noreferrer">EEE Software Lab</a></li>
               <li><strong>09:00 AM - 12:30 PM</strong> Motovate: <a href="https://www.google.com/maps/dir//8.9145782,76.6320864" target="_blank" rel="noopener noreferrer">APJ Hall</a></li>
-              <li><strong>09:00 AM - 12:30 PM</strong> OHM Sweet OHM : <a href="https://www.google.com/maps/dir//8.9148459,76.6323383" target="_blank" rel="noopener noreferrer">Room 101 & 105</a></li>
+              <li><strong>09:00 AM - 12:30 PM</strong> OHM Sweet OHM : <a href="https://www.google.com/maps/dir//8.9148459,76.6323383" target="_blank" rel="noopener noreferrer">Room 105</a></li>
               <li><strong>12:30 PM - 01:30 PM</strong> Lunch Break: <a href="https://www.google.com/maps/dir//8.9132136,76.6317408" target="_blank" rel="noopener noreferrer">Mech Block</a></li>
               <li><strong>01:30 PM - 04:30 PM</strong> Electrifying Mobility: <a href="https://www.google.com/maps/dir//8.913692,76.631853" target="_blank" rel="noopener noreferrer">DSP Lab</a></li>
               <li><strong>01:30 PM - 04:30 PM</strong> IOT Workshop: <a href="https://www.google.com/maps/dir//8.9136976,76.6318338" target="_blank" rel="noopener noreferrer">EEE Software Lab</a></li>
-              <li><strong>01:30 PM - 04:30 PM</strong> OHM Sweet OHM: <a href="https://www.google.com/maps/dir//8.9148459,76.6323383" target="_blank" rel="noopener noreferrer">Room 101 & 105</a></li>
-              <li><strong>02:00 PM - 04:30 PM</strong> EmpowerHER: <a href="https://www.google.com/maps/dir//8.9145596,76.632417" target="_blank" rel="noopener noreferrer">PTA Hall</a></li>
+              <li><strong>01:30 PM - 04:30 PM</strong> OHM Sweet OHM: <a href="https://www.google.com/maps/dir//8.9148459,76.6323383" target="_blank" rel="noopener noreferrer">Room 105</a></li>
+              <li><strong>02:00 PM - 04:30 PM</strong> EmpowerHER: <a href="https://www.google.com/maps/dir//8.9145782,76.6320864" target="_blank" rel="noopener noreferrer">APJ Hall</a></li>
+              <li><strong>04:00 PM - 06:00 PM</strong> Culturals: <a href="https://www.google.com/maps/dir//8.9151015,76.6321044" target="_blank" rel="noopener noreferrer">APJ Park</a></li>
             </ul>
           </div>
         </div>
