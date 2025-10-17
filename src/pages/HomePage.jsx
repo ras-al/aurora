@@ -178,7 +178,7 @@ shaped
           <div className="schedule-day">
             <h3>Day 1: October 18, 2025</h3>
             <ul>
-              <li><strong>08:30 AM - 09:30 AM</strong> Inauguration Ceremony <br> <a href="https://www.google.com/maps/dir//8.9145782,76.6320864">APJ Hall</a></li>
+              <li><strong>08:30 AM - 09:30 AM</strong> Inauguration Ceremony <br /> <a href="https://www.google.com/maps/dir//8.9145782,76.6320864" target="_blank" rel="noopener noreferrer">APJ Hall</a></li>
               <li><strong>09:30 AM - 01:00 PM</strong> Build a Bot</li>
               <li><strong>09:30 AM - 01:00 PM</strong> Cloud Workshop</li>
               <li><strong>09:30 AM - 01:00 PM</strong> Cadence Workshop</li>
