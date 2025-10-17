@@ -81,13 +81,14 @@ function HomePage() {
         <div className="hero-content container">
           <h1 className="animate-hero-text">AURORA'25 : Ignite Your Future!</h1>
           <p className="subtitle animate-hero-text delay-1">Join us for an unforgettable experience of innovation, learning, and connection.</p>
-          <Link to="https://app.makemypass.com/event/aurora-2025?utm_medium=website" className="register-button animate-hero-button delay-2">
-            Register for Aurora Now!
-          </Link>
+          
+          <button className="register-button animate-hero-button delay-2" disabled>
+          Aurora '25 - Registration Closed!
+          </button>
           <br />
-          <Link to="https://app.makemypass.com/event/motovate?utm_medium=website" className="register-button animate-hero-button delay-2">
-            Register for Motovate!
-          </Link>
+          <button className="register-button animate-hero-button delay-2" disabled>
+              Motovate - Registration Closed!
+          </button>
           <div className="countdown-container">
             <p className="event-begins-in">event begins in</p>
             <CountdownTimer targetDate="2025-10-18T08:30:00" />
@@ -177,7 +178,7 @@ shaped
           <div className="schedule-day">
             <h3>Day 1: October 18, 2025</h3>
             <ul>
-              <li><strong>08:30 AM - 09:30 AM</strong> Inauguration Ceremony</li>
+              <li><strong>08:30 AM - 09:30 AM</strong> Inauguration Ceremony <br> <a href="https://www.google.com/maps/dir//8.9145782,76.6320864">APJ Hall</a></li>
               <li><strong>09:30 AM - 01:00 PM</strong> Build a Bot</li>
               <li><strong>09:30 AM - 01:00 PM</strong> Cloud Workshop</li>
               <li><strong>09:30 AM - 01:00 PM</strong> Cadence Workshop</li>
