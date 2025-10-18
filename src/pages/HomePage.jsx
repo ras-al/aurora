@@ -70,11 +70,16 @@ function HomePage() {
 
   // Get all active events for the scrolling container
   const allActiveEvents = events.filter(event => !event.isCanceled);
+
+  // *** NEW: Filter for gaming events ***
   const gamingEvents = allActiveEvents.filter(event => event.type === 'Gaming');
 
   // Duplicate the events array for a seamless scrolling animation
   const duplicatedEvents = [...allActiveEvents, ...allActiveEvents];
+
+  // *** NEW: Duplicate the gaming events array ***
   const duplicatedGamingEvents = [...gamingEvents, ...gamingEvents];
+
 
   return (
     <main className="homepage page-fade-in">
@@ -166,17 +171,42 @@ shaped
           <p>No events announced yet. Stay tuned for exciting updates!</p>
         )}
       </section>
-
-      {/* Games Section */}
+      
+      {/* *** NEW: Gaming Events Section *** */}
       <section id="games" className="events-section container common-section">
         <h2>Gaming Events</h2>
-        {/* ... loading and error handling ... */}
-        {gamingEvents.length > 0 ? (
+        {loadingEvents ? (
+          <p className="loading-message">Loading gaming events...</p>
+        ) : errorEvents ? (
+          <p className="error-message">{errorEvents}</p>
+        ) : gamingEvents.length > 0 ? (
           <div className="scrolling-wrapper">
             <div className="event-cards-grid">
-              {duplicatedGamingEvents.map((event, index) => (
-                // ... card rendering logic ...
-              ))}
+              {duplicatedGamingEvents.map((event, index) => {
+                const isFull = event.limit > 0 && (event.participantCount || 0) >= event.limit;
+                
+                return (
+                  <div key={`${event.id}-${index}`} className="event-card">
+                    {event.image && (
+                        <img src={event.image} alt={event.name} className="event-card-image" />
+                    )}
+                    <div className="event-card-content">
+                      <h4>{event.name}</h4>
+                      <p>Date: {formatDate(event.date)}</p>
+                      <p>{event.description}</p>
+                    </div>
+                    <div className="action-area">
+                      {event.isCanceled ? (
+                        <button className="register-event-button disabled-button" disabled>Canceled</button>
+                      ) : isFull ? (
+                        <button className="register-event-button disabled-button" disabled>Registration Full</button>
+                      ) : (
+                        <button className="register-event-button disabled-button" disabled>Registration Closed!</button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         ) : (
