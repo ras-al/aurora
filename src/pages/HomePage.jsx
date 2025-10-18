@@ -205,7 +205,12 @@ shaped
                       ) : isFull ? (
                         <button className="register-event-button disabled-button" disabled>Registration Full</button>
                       ) : (
-                        <button className="register-event-button">Venue Directions</button>
+                         <button
+                            className="register-event-button"
+                            onClick={() => handleRegisterForEvent(event.id)}
+                          >
+                            Venue Directions
+                          </button>
                       )}
                     </div>
                   </div>
