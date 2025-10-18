@@ -13,11 +13,11 @@ function HomePage() {
   const { currentUser, userProfile, updateUserProfile } = useAuth();
   const navigate = useNavigate();
   const eventLinks = {
-  lLSkThj6WAYgc4Rn1RMs: 'https://app.makemypass.com/event/motovate?utm_medium=website',
-  6ieaJzl8mglIo74hCDU8: 'https://www.google.com/maps/dir//8.9136227,76.6328809',
-  9irhhtxyhzgTo3GTfxSb: 'https://www.google.com/maps/dir//8.9136227,76.6328809',
-  fynj6Ocku5A5QdKmFAJU: 'https://www.google.com/maps/dir//8.9136227,76.6328809',
-  ZzKjrdQLNYj8qbVor7Dt: 'https://www.google.com/maps/dir//8.9138922,76.6322327',
+  'lLSkThj6WAYgc4Rn1RMs': 'https://app.makemypass.com/event/motovate?utm_medium=website', 
+  'fynj6Ocku5A5QdKmFAJU': 'https://www.google.com/maps/dir//8.9136227,76.6328809' ,
+  'ZzKjrdQLNYj8qbVor7Dt': 'https://www.google.com/maps/dir//8.9138922,76.6322327',
+  '6ieaJzl8mglIo74hCDU8': 'https://www.google.com/maps/dir//8.9136227,76.6328809' ,
+  '9irhhtxyhzgTo3GTfxSb': 'https://www.google.com/maps/dir//8.9136227,76.6328809',
   
 };
 
@@ -56,8 +56,7 @@ function HomePage() {
 
   const handleRegisterForEvent = (eventId) => {
   const specificLink = eventLinks[eventId];
-  const defaultLink = 'https://app.makemypass.com/event/aurora-2025?utm_medium=website';
-  window.location.href = specificLink || defaultLink;
+  window.location.href = specificLink;
 };
 
   const formatDate = (date) => {
