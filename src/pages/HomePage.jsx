@@ -14,6 +14,7 @@ function HomePage() {
   const navigate = useNavigate();
   const eventLinks = {
   lLSkThj6WAYgc4Rn1RMs: 'https://app.makemypass.com/event/motovate?utm_medium=website'
+  
 };
 
   const fetchEvents = async () => {
@@ -149,6 +150,7 @@ shaped
                     )}
                     <div className="event-card-content">
                       <h4>{event.name}</h4>
+                      <p>{event.id}</p>
                       <p>Date: {formatDate(event.date)}</p>
                       {/* <p>Location: {event.location || 'Online'}</p>  */} 
                       <p>{event.description}</p>
@@ -201,7 +203,7 @@ shaped
                       ) : isFull ? (
                         <button className="register-event-button disabled-button" disabled>Registration Full</button>
                       ) : (
-                        <button className="register-event-button disabled-button" disabled>Registration Closed!</button>
+                        <button className="register-event-button" disabled>Venue Directions</button>
                       )}
                     </div>
                   </div>
