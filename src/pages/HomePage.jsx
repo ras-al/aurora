@@ -1,10 +1,10 @@
 // src/pages/HomePage.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { db, collection, getDocs, arrayUnion, doc, updateDoc, getDoc } from '../firebase'; // Ensure 'getDoc' is imported
+import { db, collection, getDocs, arrayUnion, doc, updateDoc, getDoc } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
 import CountdownTimer from '../components/CountdownTimer';
-import '../styles/HomePage.css'; // Your homepage specific styles
+import '../styles/HomePage.css';
 
 function HomePage() {
   const [events, setEvents] = useState([]);
@@ -50,10 +50,10 @@ function HomePage() {
   }, []);
 
   const handleRegisterForEvent = (eventId) => {
-  const specificLink = eventLinks[eventId];
-  const defaultLink = 'https://app.makemypass.com/event/aurora-2025?utm_medium=website';
-  window.location.href = specificLink || defaultLink;
-};
+    const specificLink = eventLinks[eventId];
+    const defaultLink = 'https://app.makemypass.com/event/aurora-2025?utm_medium=website';
+    window.location.href = specificLink || defaultLink;
+  };
 
   const formatDate = (date) => {
     if (!date) return 'TBA';
@@ -61,30 +61,37 @@ function HomePage() {
     if (isNaN(d.getTime())) {
         return 'Invalid Date';
     }
-    return d.toLocaleDateString('en-IN', {
+    return d.toLocaleDateDateString('en-IN', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     });
   };
 
-  // Get all active events for the scrolling container
-  const allActiveEvents = events.filter(event => !event.isCanceled);
+  // *** UPDATED LOGIC START ***
 
-  // *** NEW: Filter for gaming events ***
-  const gamingEvents = allActiveEvents.filter(event => event.type === 'Gaming');
+  // 1. Get all active (not canceled) events
+  const activeEvents = events.filter(event => !event.isCanceled);
 
-  // Duplicate the events array for a seamless scrolling animation
-  const duplicatedEvents = [...allActiveEvents, ...allActiveEvents];
+  // 2. Create a list specifically for "Gaming" events
+  const gamingEvents = activeEvents.filter(event => event.type === 'Gaming');
 
-  // *** NEW: Duplicate the gaming events array ***
+  // 3. Create a list for all other events (excluding "Gaming")
+  const nonGamingEvents = activeEvents.filter(event => event.type !== 'Gaming');
+
+  // 4. Duplicate the non-gaming events array for the main scroller
+  const duplicatedNonGamingEvents = [...nonGamingEvents, ...nonGamingEvents];
+
+  // 5. Duplicate the gaming events array for the games scroller
   const duplicatedGamingEvents = [...gamingEvents, ...gamingEvents];
 
+  // *** UPDATED LOGIC END ***
 
   return (
     <main className="homepage page-fade-in">
       {/* Hero Section */}
       <section id="hero" className="hero-section">
+        {/* ... (rest of the Hero Section is unchanged) ... */}
         <div className="hero-content container">
           <h1 className="animate-hero-text">AURORA '25 : Ignite Your Future!</h1>
           <p className="subtitle animate-hero-text delay-1">Join us for an unforgettable experience of innovation, learning, and connection.</p>
@@ -102,7 +109,6 @@ function HomePage() {
             <p className="event-dates">18, 19 Oct 2025</p>
           </div>
         </div>
-        {/* Scroll Down Indicator */}
         <a href="#about" className="scroll-down-indicator">
             Scroll Down
             <i className="fas fa-chevron-down"></i>
@@ -111,6 +117,7 @@ function HomePage() {
 
       {/* About Aurora Section */}
       <section id="about" className="about-aurora container common-section">
+      {/* ... (About Section is unchanged) ... */}
         <h2>About Aurora</h2>
         <p>
           Welcome to Aurora 2025 – the flagship technical fest of IEEE SB TKMCE, where creativity meets
@@ -136,10 +143,11 @@ shaped
           <p className="loading-message">Loading events...</p>
         ) : errorEvents ? (
           <p className="error-message">{errorEvents}</p>
-        ) : allActiveEvents.length > 0 ? (
+        ) : nonGamingEvents.length > 0 ? ( // *** CHANGED: Check nonGamingEvents length ***
           <div className="scrolling-wrapper">
             <div className="event-cards-grid">
-              {duplicatedEvents.map((event, index) => {
+              {/* *** CHANGED: Map over duplicatedNonGamingEvents *** */}
+              {duplicatedNonGamingEvents.map((event, index) => {
                 const isFull = event.limit > 0 && (event.participantCount || 0) >= event.limit;
                 
                 return (
@@ -150,7 +158,6 @@ shaped
                     <div className="event-card-content">
                       <h4>{event.name}</h4>
                       <p>Date: {formatDate(event.date)}</p>
-                      {/* <p>Location: {event.location || 'Online'}</p>  */} 
                       <p>{event.description}</p>
                     </div>
                     <div className="action-area">
@@ -168,11 +175,11 @@ shaped
             </div>
           </div>
         ) : (
-          <p>No events announced yet. Stay tuned for exciting updates!</p>
+          <p>No other events announced yet. Stay tuned for exciting updates!</p>
         )}
       </section>
       
-      {/* *** NEW: Gaming Events Section *** */}
+      {/* Gaming Events Section */}
       <section id="games" className="events-section container common-section">
         <h2>Gaming Events</h2>
         {loadingEvents ? (
@@ -214,7 +221,8 @@ shaped
         )}
       </section>
 
-      {/* Schedule Section */}
+      {/* Schedule, Accommodation, Location, and Contact Sections are unchanged */}
+      {/* ... (rest of the file) ... */}
       <section id="schedule" className="schedule-section container common-section">
         <h2>Event Schedule</h2>
         <p>Get ready for a power-packed few days! Here's a glimpse of what's happening:</p>
@@ -261,7 +269,6 @@ shaped
         </p>
       </section>
 
-      {/* Accommodation Section */}
       <section id="accommodation" className="accommodation-section container common-section">
         <h2>Accommodation & Travel</h2>
         <p>
@@ -316,7 +323,6 @@ shaped
         </div>
       </section>
 
-      {/* Google Maps Section */}
       <section id="location" className="location-section container common-section">
         <h2>Find Us</h2>
         <div className="map-container">
@@ -333,7 +339,6 @@ shaped
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="contact-section container common-section">
         <h2>Contact Us</h2>
         <p>Have questions? Reach out to us!</p>
