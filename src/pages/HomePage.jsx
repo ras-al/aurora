@@ -70,9 +70,11 @@ function HomePage() {
 
   // Get all active events for the scrolling container
   const allActiveEvents = events.filter(event => !event.isCanceled);
+  const gamingEvents = allActiveEvents.filter(event => event.type === 'Gaming');
 
   // Duplicate the events array for a seamless scrolling animation
   const duplicatedEvents = [...allActiveEvents, ...allActiveEvents];
+  const duplicatedGamingEvents = [...gamingEvents, ...gamingEvents];
 
   return (
     <main className="homepage page-fade-in">
@@ -162,6 +164,23 @@ shaped
           </div>
         ) : (
           <p>No events announced yet. Stay tuned for exciting updates!</p>
+        )}
+      </section>
+
+      {/* Games Section */}
+      <section id="games" className="events-section container common-section">
+        <h2>Gaming Events</h2>
+        {/* ... loading and error handling ... */}
+        {gamingEvents.length > 0 ? (
+          <div className="scrolling-wrapper">
+            <div className="event-cards-grid">
+              {duplicatedGamingEvents.map((event, index) => (
+                // ... card rendering logic ...
+              ))}
+            </div>
+          </div>
+        ) : (
+          <p>No gaming events announced yet. Stay tuned!</p>
         )}
       </section>
 
