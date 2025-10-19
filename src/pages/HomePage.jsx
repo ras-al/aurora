@@ -41,10 +41,24 @@ function HomePage() {
       });
 
       eventsList.sort((a, b) => {
-          const dateA = a.date instanceof Date ? a.date.getTime() : 0;
-          const dateB = b.date instanceof Date ? b.date.getTime() : 0;
-          return dateA - dateB;
-      });
+  const dateA = new Date(a.date);
+  const dateB = new Date(b.date);
+
+  // Create dates with time set to 0 to compare dates only
+  const dateOnlyA = new Date(dateA).setHours(0, 0, 0, 0);
+  const dateOnlyB = new Date(dateB).setHours(0, 0, 0, 0);
+
+  // Compare dates in reverse chronological order (newest first)
+  const dateComparison = dateOnlyB - dateOnlyA;
+
+  // If the dates are different, return the result of the date comparison
+  if (dateComparison !== 0) {
+    return dateComparison;
+  }
+
+  // If the dates are the same, sort by time in chronological order (earliest first)
+  return dateA.getTime() - dateB.getTime();
+});
 
       setEvents(eventsList);
     } catch (err) {
