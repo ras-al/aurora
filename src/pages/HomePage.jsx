@@ -14,10 +14,15 @@ function HomePage() {
   const navigate = useNavigate();
   const eventLinks = {
   'lLSkThj6WAYgc4Rn1RMs': 'https://app.makemypass.com/event/motovate?utm_medium=website', 
-  'fynj6Ocku5A5QdKmFAJU': 'https://www.google.com/maps/dir//8.9136227,76.6328809',
-  'ZzKjrdQLNYj8qbVor7Dt': 'https://www.google.com/maps/dir//8.9138922,76.6322327',
-  '6ieaJzl8mglIo74hCDU8': 'https://www.google.com/maps/dir//8.9136227,76.6328809',
-  '9irhhtxyhzgTo3GTfxSb': 'https://www.google.com/maps/dir//8.9136227,76.6328809',
+  'fynj6Ocku5A5QdKmFAJU': 'https://www.google.com/maps/dir//8.9136227,76.6328809',//Games
+  'ZzKjrdQLNYj8qbVor7Dt': 'https://www.google.com/maps/dir//8.9138922,76.6322327', //VR
+  '6ieaJzl8mglIo74hCDU8': 'https://www.google.com/maps/dir//8.9136227,76.6328809',//Games
+  '9irhhtxyhzgTo3GTfxSb': 'https://www.google.com/maps/dir//8.9136227,76.6328809', //Games
+  'lLSkThj6WAYgc4Rn1RMs': 'https://www.google.com/maps/dir//8.9145782,76.6320864', //Motovate
+  'AJYaNWuUyKOZMKXz6KW7': 'https://www.google.com/maps/dir//8.9141509,76.6323699', //IOT Workshop
+  '10imZqvAzFfiDzU9NimM': 'https://www.google.com/maps/dir//8.9148459,76.6323383', //OHM Sweet OHM
+  '0yaPfft8UFuRmW3BILAM': 'https://www.google.com/maps/dir//8.9145782,76.6320864', //EmpowerHER
+  't7s1NoZ6Q4kuDvrKTaB4': 'https://www.google.com/maps/dir//8.913692,76.631853', //Electrifying Mobility
   
 };
 
@@ -153,7 +158,6 @@ shaped
                     )}
                     <div className="event-card-content">
                       <h4>{event.name}</h4>
-                      <p>{event.id}</p>
                       <p>Date: {formatDate(event.date)}</p>
                       {/* <p>Location: {event.location || 'Online'}</p>  */} 
                       <p>{event.description}</p>
